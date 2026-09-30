@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>選購商品 - 官方旗艦店</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: loading 1.5s infinite; }
+    @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- 頂部導覽列 -->
+  <header class="bg-white border-b sticky top-0 z-40">
+    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <span class="text-xl font-bold tracking-tight text-blue-600">SMART TECH</span>
+        <span class="text-xs text-gray-400 border-l pl-2">官方授權線上選購</span>
+      </div>
+      <div class="text-xs text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
+        研究情境編號: <span id="display-uid" class="font-mono text-gray-700 font-semibold">載入中...</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 緊迫性倒數橫幅 (預設隱藏) -->
+  <div id="urgency-banner" class="hidden bg-amber-500 text-white font-medium text-center py-2.5 px-4 text-sm shadow-inner transition-all duration-300">
+    ⚡ <strong>限時特惠通知</strong>：本場次限時優惠僅保留 <span id="countdown-timer" class="font-mono font-bold text-yellow-100 underline text-base">15:00</span> 分鐘，逾期將恢復原廠定價！
+  </div>
+
+  <!-- 主要內容區 -->
+  <main class="max-w-5xl mx-auto px-4 py-8 flex-grow">
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-8 p-6 md:p-8">
+      
+      <!-- 左側：商品圖示區 -->
+      <div class="flex flex-col space-y-4">
+        <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center border border-gray-200 shadow-inner">
+          <img id="main-product-img" src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80" alt="目標商品" class="object-cover w-full h-full hover:scale-105 transition-transform duration-300">
+        </div>
+        <div class="flex space-x-2">
+          <div class="w-16 h-16 rounded-lg border-2 border-blue-500 overflow-hidden cursor-pointer">
+            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=200&q=80" class="object-cover w-full h-full">
+          </div>
+          <div class="w-16 h-16 rounded-lg border border-gray-200 overflow-hidden opacity-60">
+            <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=200&q=80" class="object-cover w-full h-full">
+          </div>
+        </div>
+      </div>
+
+      <!-- 右側：自變數操弄呈現區 -->
+      <div class="flex flex-col justify-between">
+        <div>
+          <!-- 標籤區 -->
+          <div class="flex items-center space-x-2 mb-2">
+            <span class="bg-blue-50 text-blue-700 text-xs px-2.5 py-0.5 rounded font-semibold">熱銷新品</span>
+            <span id="discount-badge" class="bg-red-50 text-red-600 text-xs px-2.5 py-0.5 rounded font-bold tracking-wide">特惠活動中</span>
+          </div>
+
+          <h1 class="text-2xl font-bold text-gray-900 mb-2">ProTech 旗艦級智慧健康手環</h1>
+          <p class="text-sm text-gray-500 mb-4 leading-relaxed">全天候心率監測、高精準運動追蹤、兩週長效續航，支援多種戶外防水運動模式。</p>
+
+          <!-- 價格呈現區塊 (動態注入) -->
+          <div class="bg-gray-50 p-4 rounded-xl mb-5 border border-gray-100">
+            <div class="flex items-baseline space-x-3 mb-1">
+              <span id="target-price" class="text-3xl font-extrabold text-red-600">NT$ 800</span>
+              <span id="original-price" class="text-sm text-gray-400 line-through">原價 NT$ 1,000</span>
+            </div>
+            <p id="discount-desc" class="text-xs text-red-500 font-medium tracking-wide">優惠計算中...</p>
+          </div>
+
+          <!-- 運費呈現區塊 (動態注入) -->
+          <div class="border-t border-b border-gray-100 py-3.5 mb-5 text-sm flex items-center justify-between">
+            <span class="text-gray-500 font-medium">運送費用</span>
+            <span id="shipping-desc" class="font-bold text-gray-800">運費計算中...</span>
+          </div>
+
+          <!-- 商品規格選擇 -->
+          <div class="space-y-3 mb-6">
+            <label class="text-xs font-semibold text-gray-500 uppercase tracking-wider">選擇顏色款式</label>
+            <div class="flex space-x-3">
+              <button class="px-4 py-2 border-2 border-blue-600 text-blue-600 text-xs font-bold rounded-lg focus:outline-none">極夜黑</button>
+              <button class="px-4 py-2 border border-gray-200 text-gray-600 text-xs font-medium rounded-lg hover:border-gray-400">曜石灰</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 行為觸發按鈕 -->
+        <div>
+          <button id="checkout-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-blue-500/30 transition-all flex items-center justify-center space-x-2 text-base">
+            <span>確認選購並前往結帳</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+          <p class="text-center text-[11px] text-gray-400 mt-2">※ 本站為學術情境評估，點擊不產生任何真實扣款或收費行為。</p>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 頁尾 -->
+  <footer class="bg-white border-t py-4 text-center text-xs text-gray-400">
+    學術研究購物模擬平台 · 請依您真實日常直覺進行選購評估
+  </footer>
+
+  <!-- 模擬結帳確認彈窗 (Modal) -->
+  <div id="checkout-modal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50 px-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl transform transition-all">
+      <div class="flex justify-between items-center pb-3 border-b border-gray-100">
+        <h3 class="text-lg font-bold text-gray-900">選購確認明細</h3>
+      </div>
+      <div class="py-4 space-y-2.5 text-sm">
+        <div class="flex justify-between"><span class="text-gray-500">商品原價</span><span class="font-medium text-gray-800">NT$ 1,000</span></div>
+        <div class="flex justify-between text-red-600"><span id="modal-discount-title">折扣折抵</span><span id="modal-discount-val">- NT$ 200</span></div>
+        <div class="flex justify-between"><span class="text-gray-500">運費小計</span><span id="modal-shipping-val" class="font-medium text-gray-800">NT$ 0</span></div>
+        <div class="border-t border-gray-100 pt-3 flex justify-between items-baseline font-bold text-base">
+          <span>應付總計</span>
+          <span id="modal-total-val" class="text-red-600 text-xl font-extrabold">NT$ 800</span>
+        </div>
+      </div>
+      <div class="bg-blue-50 border border-blue-100 rounded-lg p-3 text-xs text-blue-700 mb-5 leading-relaxed">
+        提示：此步驟已記錄您的購買選擇意向。點擊下方按鈕將提交結果並導回問卷完成後續題項。
+      </div>
+      <button id="final-submit-btn" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl transition text-center block">
+        確認提交本次選購意向
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // 1. 初始化計時與點擊追蹤
+    const startTime = Date.now();
+    let clickTrackerCount = 0;
+    document.addEventListener('click', () => { clickTrackerCount++; });
+
+    // 2. 解析 URL 參數
+    const urlParams = new URLSearchParams(window.location.search);
+    const uid = urlParams.get('uid') || 'TEST_USER';
+    const discountCond = urlParams.get('discount') || 'pct';      // 'pct' (8折) 或 'amount' (省200)
+    const shippingCond = urlParams.get('shipping') || 'bundled';  // 'bundled' (免運) 或 'split' (運費100)
+    const urgencyCond = urlParams.get('urgency') || 'none';       // 'high' (15分倒數) 或 'none'
+
+    document.getElementById('display-uid').innerText = uid;
+
+    // 3. 處理「優惠時效性」操弄 (Urgency)
+    if (urgencyCond === 'high') {
+      const banner = document.getElementById('urgency-banner');
+      banner.classList.remove('hidden');
+      
+      let durationSec = 15 * 60; // 15 分鐘
+      const timerElement = document.getElementById('countdown-timer');
+      const timerInterval = setInterval(() => {
+        const m = String(Math.floor(durationSec / 60)).padStart(2, '0');
+        const s = String(durationSec % 60).padStart(2, '0');
+        timerElement.innerText = `${m}:${s}`;
+        if (--durationSec < 0) {
+          clearInterval(timerInterval);
+          timerElement.innerText = "已截止";
+        }
+      }, 1000);
+    }
+
+    // 4. 處理「折扣形式」與「運費呈現」操弄
+    let finalPayable = 800;
+    let shippingFee = 0;
+
+    // 運費自變數
+    if (shippingCond === 'split') {
+      shippingFee = 100;
+      document.getElementById('shipping-desc').innerText = '標準運費 NT$ 100';
+      document.getElementById('modal-shipping-val').innerText = '+ NT$ 100';
+    } else {
+      shippingFee = 0;
+      document.getElementById('shipping-desc').innerHTML = '<span class="text-green-600 font-bold">全館免運費（NT$ 0）</span>';
+      document.getElementById('modal-shipping-val').innerText = 'NT$ 0 (免運)';
+    }
+
+    // 折扣自變數
+    if (discountCond === 'pct') {
+      document.getElementById('target-price').innerText = 'NT$ 800';
+      document.getElementById('discount-badge').innerText = '限時享 8 折';
+      document.getElementById('discount-desc').innerText = '★ 促銷優惠：全品項直接享結帳 8 折！';
+      document.getElementById('modal-discount-title').innerText = '促銷優惠 (8折)';
+      document.getElementById('modal-discount-val').innerText = '- NT$ 200';
+    } else {
+      document.getElementById('target-price').innerText = 'NT$ 800';
+      document.getElementById('discount-badge').innerText = '限時現折 $200';
+      document.getElementById('discount-desc').innerText = '★ 促銷優惠：結帳現折 NT$ 200 現金！';
+      document.getElementById('modal-discount-title').innerText = '促銷優惠 (現折)';
+      document.getElementById('modal-discount-val').innerText = '- NT$ 200';
+    }
+
+    finalPayable = 800 + shippingFee;
+    document.getElementById('modal-total-val').innerText = `NT$ ${finalPayable}`;
+
+    // 5. 互動與彈窗邏輯
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const modal = document.getElementById('checkout-modal');
+    const finalSubmitBtn = document.getElementById('final-submit-btn');
+
+    checkoutBtn.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    });
+
+    // 6. 送出實驗結果與跳轉
+    finalSubmitBtn.addEventListener('click', () => {
+      const decisionDurationMs = Date.now() - startTime;
+      const decisionDurationSec = (decisionDurationMs / 1000).toFixed(2);
+
+      // 封裝受試者客觀行為指標
+      const payload = {
+        uid: uid,
+        condition: `${discountCond}_${shippingCond}_${urgencyCond}`,
+        decisionTimeSec: decisionDurationSec,
+        clickCount: clickTrackerCount,
+        finalTotal: finalPayable,
+        timestamp: new Date().toISOString()
+      };
+
+      console.log('實驗數據已封裝:', payload);
+
+      // 【填寫說明】：更換為你的問卷網址
+      const postTestSurveyUrl = `https://your-survey-url.com/?uid=${encodeURIComponent(uid)}&time=${decisionDurationSec}&cond=${encodeURIComponent(payload.condition)}`;
+      
+      alert(`已成功記錄您的選購意向！\n耗時：${decisionDurationSec} 秒\n即將導回後測量表...`);
+      window.location.href = postTestSurveyUrl;
+    });
+  </script>
+</body>
+</html>
