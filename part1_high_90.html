@@ -32,17 +32,16 @@
             <span class="font-bold text-gray-800">標準物流運費 NT$ 90</span>
           </div>
         </div>
-        <button id="checkout-btn" class="w-full bg-blue-600 text-white font-bold py-3.5 rounded-xl shadow-lg mt-6">
+        <button id="checkout-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg mt-6 transition">
           確認選購並前往結帳 (總額 NT$ 3,930)
         </button>
       </div>
     </div>
   </main>
   <script>
-    const startTime = Date.now();
     document.getElementById('checkout-btn').addEventListener('click', () => {
-      const duration = ((Date.now() - startTime) / 1000).toFixed(2);
-      alert(`選購評估完成！\n運費：NT$ 90\n決策時間：${duration} 秒\n即將導回問卷。`);
+      alert("選購評估完成！即將為您導回問卷繼續作答。");
+      window.location.href = "https://www.surveycake.com/s/OOkbX";
     });
   </script>
 </body>
