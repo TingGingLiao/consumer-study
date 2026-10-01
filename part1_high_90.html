@@ -14,14 +14,13 @@
   <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 grid md:grid-cols-2 gap-8 items-start">
       
-      <!-- 圖片展示區（單一大圖 + 底部小縮圖） -->
+      <!-- 圖片展示區 -->
       <div>
         <div class="aspect-square bg-white rounded-xl overflow-hidden mb-3 border flex items-center justify-center p-2">
           <img id="main-product-img" src="apple watch.webp" class="object-contain w-full h-full transition duration-200">
         </div>
-        <!-- 縮小版縮圖容器 -->
         <div class="flex gap-3">
-          <button type="button" id="thumb-1" onclick="switchImage('apple watch.webp', 'thumb-1')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-blue-500 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
+          <button type="button" id="thumb-1" onclick="switchImage('apple watch.webp'.webp', 'thumb-1')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-blue-500 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
             <img src="apple watch.webp" class="object-contain w-full h-full">
           </button>
           <button type="button" id="thumb-2" onclick="switchImage('apple watch 2.webp', 'thumb-2')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
@@ -31,7 +30,7 @@
       </div>
 
       <!-- 商品資訊與購買區 -->
-      <div class="flex flex-col justify-between h-full">
+      <div class="flex flex-col justify-between">
         <div>
           <span class="bg-red-50 text-red-600 text-xs px-2.5 py-0.5 rounded font-bold">促銷中</span>
           <h1 class="text-2xl font-bold text-gray-900 mt-2 mb-2 leading-snug">Apple Watch Series 11 GPS 42mm 曜石黑色鋁金屬 錶殼搭配黑色運動錶帶</h1>
@@ -55,8 +54,44 @@
           確認選購並前往結帳 (總額 NT$ 11,990)
         </button>
       </div>
+
     </div>
   </main>
+
+  <!-- 選購確認明細彈窗 (Modal) -->
+  <div id="confirm-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative">
+      <h3 class="text-xl font-bold text-gray-900 mb-6">選購確認明細</h3>
+      
+      <div class="space-y-3 text-base">
+        <div class="flex justify-between text-gray-600">
+          <span>商品原價</span>
+          <span class="font-medium text-gray-900">NT$ 12,900</span>
+        </div>
+        <div class="flex justify-between text-red-600">
+          <span>專屬折抵</span>
+          <span class="font-medium">- NT$ 1,000</span>
+        </div>
+        <div class="flex justify-between text-gray-600">
+          <span>物流運費</span>
+          <span class="font-medium text-gray-900">+ NT$ 90</span>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-100 my-5 pt-4 flex justify-between items-baseline">
+        <span class="text-lg font-bold text-gray-900">應付總計</span>
+        <span class="text-3xl font-extrabold text-red-600">NT$ 11,990</span>
+      </div>
+
+      <div class="bg-blue-50 border border-blue-100 rounded-xl p-3.5 mb-6 text-xs leading-relaxed text-blue-700">
+        提示：此步驟已記錄您的購買選擇意向。點擊下方按鈕將提交結果並導回問卷完成後續題項。
+      </div>
+
+      <button id="modal-submit-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl text-base shadow-md transition">
+        確認提交本次選購意向
+      </button>
+    </div>
+  </div>
 
   <script>
     function switchImage(src, activeId) {
@@ -65,9 +100,14 @@
       document.getElementById('thumb-2').className = 'w-16 h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white ' + (activeId === 'thumb-2' ? 'border-blue-500' : 'border-gray-200');
     }
 
+    // 點擊「前往結帳」➔ 顯示選購確認明細彈窗
     document.getElementById('checkout-btn').addEventListener('click', () => {
-      alert("選購評估完成！即將為您導回問卷繼續作答。");
-      window.location.href = "https://www.surveycake.com/s/7mZK1";
+      document.getElementById('confirm-modal').classList.remove('hidden');
+    });
+
+    // 點擊「確認提交本次選購意向」➔ 導回問卷
+    document.getElementById('modal-submit-btn').addEventListener('click', () => {
+      window.location.href = "https://www.surveycake.com/s/OOkbX";
     });
   </script>
 </body>
