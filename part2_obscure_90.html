@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>商品選購評估</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col justify-between">
+  <!-- 進場促銷活動廣告彈窗 (暗示折扣：無折扣數字) -->
+  <div id="promo-modal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative text-center border-t-8 border-blue-600">
+      <button type="button" onclick="closePromoModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold p-1">✕</button>
+      <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold shadow-inner">
+        特惠
+      </div>
+      <h2 class="text-2xl font-black text-gray-900 mb-2">🎉 品牌週年慶・年度特選熱銷</h2>
+      <p class="text-sm text-gray-600 mb-6 leading-relaxed">
+        全館精選居家生活好物全面特惠中！感恩回饋會員支持，優質商品立即搶購，數量有限售完為止！
+      </p>
+      <button type="button" onclick="closePromoModal()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition">
+        立即前往選購商品
+      </button>
+    </div>
+  </div>
+
+  <header class="bg-white border-b h-14 flex items-center px-4 max-w-5xl mx-auto w-full justify-between">
+    <span class="text-xl font-bold text-blue-600">SMART TECH</span>
+    <span class="text-xs text-gray-400">官方線上旗艦館</span>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 grid md:grid-cols-2 gap-8 items-start">
+      
+      <!-- 圖片展示區 -->
+      <div>
+        <div class="aspect-square bg-white rounded-xl overflow-hidden mb-3 border flex items-center justify-center p-2">
+          <img id="main-product-img" src="tissue_1.webp" class="object-contain w-full h-full transition duration-200">
+        </div>
+        <div class="flex gap-3">
+          <button type="button" id="thumb-1" onclick="switchImage('tissue_1.webp', 'thumb-1')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-blue-500 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
+            <img src="tissue_1.webp" class="object-contain w-full h-full">
+          </button>
+          <button type="button" id="thumb-2" onclick="switchImage('tissue_2.webp', 'thumb-2')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
+            <img src="tissue_2.webp" class="object-contain w-full h-full">
+          </button>
+          <button type="button" id="thumb-3" onclick="switchImage('tissue_3.webp', 'thumb-3')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
+            <img src="tissue_3.webp" class="object-contain w-full h-full">
+          </button>
+        </div>
+      </div>
+
+      <!-- 商品資訊區 -->
+      <div class="flex flex-col justify-between">
+        <div>
+          <span class="bg-gray-100 text-gray-500 text-xs px-2.5 py-0.5 rounded font-medium">一般商品</span>
+          <h1 class="text-2xl font-bold text-gray-900 mt-2 mb-3 leading-snug">五月花 新柔韌抽取式衛生紙 (100抽x72包/箱)</h1>
+          
+          <ul class="text-sm text-gray-700 space-y-1.5 mb-5 list-disc list-inside">
+            <li>柔軟又強韌，觸感柔順不掉屑</li>
+            <li>獨家柔織交織技術，吸水力強不易破</li>
+            <li>柔韌版全新升級，居家日用首選</li>
+            <li>原生紙漿製作，不含螢光劑安全無毒</li>
+          </ul>
+          
+          <div class="bg-gray-50 p-4 rounded-xl mb-4 border">
+            <div class="flex items-baseline">
+              <span class="text-3xl font-extrabold text-gray-900">NT$ 995</span>
+            </div>
+            <p class="text-xs text-gray-400 mt-1">參考定價 NT$ 1,470</p>
+          </div>
+
+          <div class="border-t border-b py-3 text-sm flex justify-between">
+            <span class="text-gray-500">物流運費</span>
+            <span class="font-bold text-gray-800">標準物流運費 NT$ 90</span>
+          </div>
+        </div>
+
+        <button id="checkout-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg mt-6 transition">
+          確認選購並前往結帳 (總額 NT$ 1,085)
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 選購確認明細彈窗 -->
+  <div id="confirm-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative">
+      <h3 class="text-xl font-bold text-gray-900 mb-6">選購確認明細</h3>
+      
+      <div class="space-y-3 text-base">
+        <div class="flex justify-between text-gray-600">
+          <span>商品售價</span>
+          <span class="font-medium text-gray-900">NT$ 995</span>
+        </div>
+        <div class="flex justify-between text-gray-600">
+          <span>物流運費</span>
+          <span class="font-medium text-gray-900">+ NT$ 90</span>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-100 my-5 pt-4 flex justify-between items-baseline">
+        <span class="text-lg font-bold text-gray-900">應付總計</span>
+        <span class="text-3xl font-extrabold text-gray-900">NT$ 1,085</span>
+      </div>
+
+      <div class="bg-blue-50 border border-blue-100 rounded-xl p-3.5 mb-6 text-xs leading-relaxed text-blue-700">
+        提示：此步驟已記錄您的購買選擇意向。點擊下方按鈕將提交結果並導回問卷完成後續題項。
+      </div>
+
+      <button id="modal-submit-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl text-base shadow-md transition">
+        確認提交本次選購意向
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function closePromoModal() {
+      document.getElementById('promo-modal').classList.add('hidden');
+    }
+
+    function switchImage(src, activeId) {
+      document.getElementById('main-product-img').src = src;
+      ['thumb-1', 'thumb-2', 'thumb-3'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.className = 'w-16 h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white ' + (activeId === id ? 'border-blue-500' : 'border-gray-200');
+      });
+    }
+
+    document.getElementById('checkout-btn').addEventListener('click', () => {
+      document.getElementById('confirm-modal').classList.remove('hidden');
+    });
+
+    document.getElementById('modal-submit-btn').addEventListener('click', () => {
+      window.location.href = "https://www.surveycake.com/s/OOkbX";
+    });
+  </script>
+</body>
+</html>
