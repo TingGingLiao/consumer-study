@@ -14,31 +14,38 @@
   <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 grid md:grid-cols-2 gap-8 items-start">
       
-      <!-- 圖片展示區 -->
+      <!-- 圖片展示區（主大圖 + 3 張切換縮圖） -->
       <div>
         <div class="aspect-square bg-white rounded-xl overflow-hidden mb-3 border flex items-center justify-center p-2">
           <img id="main-product-img" src="five flower.jfif" class="object-contain w-full h-full transition duration-200">
         </div>
+        
+        <!-- 底部 3 張切換小縮圖 -->
         <div class="flex gap-3">
           <button type="button" id="thumb-1" onclick="switchImage('five flower.jfif', 'thumb-1')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-blue-500 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
             <img src="five flower.jfif" class="object-contain w-full h-full">
           </button>
-          <button type="button" id="thumb-2" onclick="switchImage('five flower 2.webp', 'thumb-2')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
+          <button type="button" id="thumb-2" onclick="switchImage('five flower 3.webp', 'thumb-2')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
+            <img src="five flower 3.webp" class="object-contain w-full h-full">
+          </button>
+          <button type="button" id="thumb-3" onclick="switchImage('five flower 2.webp', 'thumb-3')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
             <img src="five flower 2.webp" class="object-contain w-full h-full">
           </button>
         </div>
       </div>
 
-      <!-- 商品資訊與購買區 -->
+      <!-- 右側商品資訊與購買區 -->
       <div class="flex flex-col justify-between">
         <div>
           <span class="bg-red-50 text-red-600 text-xs px-2.5 py-0.5 rounded font-bold">促銷中</span>
-          <h1 class="text-2xl font-bold text-gray-900 mt-2 mb-2 leading-snug">五月花新柔韌抽取衛生紙 (110抽x12包x2袋)</h1>
-           <ul class="text-sm text-gray-700 space-y-1.5 mb-5 list-disc list-inside">
-  <li>柔軟又強韌</li>
-  <li>獨家柔織交織技術</li>
-  <li>柔韌版全新升級</li>
-
+          <h1 class="text-2xl font-bold text-gray-900 mt-2 mb-3 leading-snug">Apple Watch Series 11 GPS 42mm 曜石黑色鋁金屬 錶殼搭配黑色運動錶帶</h1>
+          
+          <!-- 直式條列商品特色 -->
+          <ul class="text-sm text-gray-700 space-y-1.5 mb-5 list-disc list-inside">
+            <li>柔軟又強韌</li>
+            <li>獨家柔織交織技術</li>
+            <li>柔韌版全新升級</li>
+          </ul>
           
           <div class="bg-gray-50 p-4 rounded-xl mb-4 border">
             <div class="flex items-baseline space-x-3">
@@ -62,7 +69,7 @@
     </div>
   </main>
 
-  <!-- 選購確認明細彈窗 (Modal) -->
+  <!-- 選購確認明細彈窗 -->
   <div id="confirm-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative">
       <h3 class="text-xl font-bold text-gray-900 mb-6">選購確認明細</h3>
@@ -98,18 +105,21 @@
   </div>
 
   <script>
+    // 支援 3 張縮圖的圖片切換與藍框高亮判斷
     function switchImage(src, activeId) {
       document.getElementById('main-product-img').src = src;
-      document.getElementById('thumb-1').className = 'w-16 h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white ' + (activeId === 'thumb-1' ? 'border-blue-500' : 'border-gray-200');
-      document.getElementById('thumb-2').className = 'w-16 h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white ' + (activeId === 'thumb-2' ? 'border-blue-500' : 'border-gray-200');
+      ['thumb-1', 'thumb-2', 'thumb-3'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.className = 'w-16 h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white ' + (activeId === id ? 'border-blue-500' : 'border-gray-200');
+        }
+      });
     }
 
-    // 點擊「前往結帳」➔ 顯示選購確認明細彈窗
     document.getElementById('checkout-btn').addEventListener('click', () => {
       document.getElementById('confirm-modal').classList.remove('hidden');
     });
 
-    // 點擊「確認提交本次選購意向」➔ 導回問卷
     document.getElementById('modal-submit-btn').addEventListener('click', () => {
       window.location.href = "https://www.surveycake.com/s/b6gn1";
     });
