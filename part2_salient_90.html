@@ -6,16 +6,16 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col justify-between">
-  <!-- 進場促銷活動廣告彈窗 (明示折扣 88折) -->
+  <!-- 進場促銷活動廣告彈窗 (明示 88 折) -->
   <div id="promo-modal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative text-center border-t-8 border-red-500">
       <button type="button" onclick="closePromoModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold p-1">✕</button>
       <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold shadow-inner">
         88折
       </div>
-      <h2 class="text-2xl font-black text-gray-900 mb-2">🎉 品牌週年慶・全館 88 折</h2>
+      <h2 class="text-2xl font-black text-gray-900 mb-2">🎉 品牌特惠日・全館 88 折</h2>
       <p class="text-sm text-gray-600 mb-6 leading-relaxed">
-        全館商品現正熱銷中！結帳即享 <strong class="text-red-600 font-extrabold text-base">88 折專屬折扣優惠</strong>，把握年度最強下殺機會！
+        全館商品現正熱銷中！結帳即享 <strong class="text-red-600 font-extrabold text-base">88 折專屬折扣優惠</strong>
       </p>
       <button type="button" onclick="closePromoModal()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition">
         立即前往選購 (享 88 折)
@@ -49,12 +49,12 @@
         </div>
       </div>
 
-      <!-- 商品資訊區 -->
+      <!-- 商品資訊區（僅呈現原價與折扣標籤） -->
       <div class="flex flex-col justify-between">
         <div>
           <div class="flex items-center gap-2 mb-2">
-            <span class="bg-red-600 text-white text-xs px-2.5 py-1 rounded font-bold tracking-wide shadow-sm">促銷 88 折</span>
-            <span class="bg-red-50 text-red-600 text-xs px-2 py-0.5 rounded font-semibold border border-red-200">限時有感優惠</span>
+            <span class="bg-red-600 text-white text-xs px-2.5 py-1 rounded font-bold tracking-wide shadow-sm">全館 88 折</span>
+            <span class="bg-red-50 text-red-600 text-xs px-2 py-0.5 rounded font-semibold border border-red-200">品牌特惠日</span>
           </div>
           <h1 class="text-2xl font-bold text-gray-900 mb-3 leading-snug">五月花 新柔韌抽取式衛生紙 (100抽x72包/箱)</h1>
           
@@ -65,12 +65,12 @@
             <li>原生紙漿製作，不含螢光劑安全無毒</li>
           </ul>
           
-          <div class="bg-red-50/50 p-4 rounded-xl mb-4 border border-red-100">
+          <!-- 價格區：僅顯示商品原價 -->
+          <div class="bg-gray-50 p-4 rounded-xl mb-4 border">
             <div class="flex items-baseline space-x-3">
-              <span class="text-3xl font-extrabold text-red-600">NT$ 1,294</span>
-              <span class="text-sm text-gray-400 line-through">原價 NT$ 1,470</span>
+              <span class="text-3xl font-extrabold text-gray-900">NT$ 1,470</span>
             </div>
-            <p class="text-xs text-red-600 mt-1 font-bold">🔥 全館慶活動・結帳享 88 折優惠（現省 NT$ 176）</p>
+            <p class="text-xs text-red-600 mt-1 font-bold">🔥 品牌特惠活動：結帳現享 88 折優惠</p>
           </div>
 
           <div class="border-t border-b py-3 text-sm flex justify-between">
@@ -80,14 +80,14 @@
         </div>
 
         <button id="checkout-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg mt-6 transition">
-          確認選購並前往結帳 (總額 NT$ 1,384)
+          確認選購並前往結帳
         </button>
       </div>
 
     </div>
   </main>
 
-  <!-- 選購確認明細彈窗 -->
+  <!-- 選購確認明細彈窗（結算總額） -->
   <div id="confirm-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative">
       <h3 class="text-xl font-bold text-gray-900 mb-6">選購確認明細</h3>
