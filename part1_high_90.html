@@ -10,16 +10,32 @@
     <span class="text-xl font-bold text-blue-600">SMART TECH</span>
     <span class="text-xs text-gray-400">官方線上旗艦館</span>
   </header>
+
   <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 grid md:grid-cols-2 gap-8">
-      <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden">
-        <img src="1.png" class="object-cover w-full h-full">
+      
+      <!-- 圖片展示區（主大圖 + 2張切換縮圖） -->
+      <div>
+        <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden mb-3 border">
+          <img id="main-product-img" src="apple watch.webp" class="object-cover w-full h-full transition duration-200">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <button type="button" id="thumb-1" onclick="switchImage('apple watch.webp', 'thumb-1')" class="aspect-square rounded-lg overflow-hidden border-2 border-blue-500 hover:opacity-90 focus:outline-none transition">
+            <img src="apple watch.webp" class="object-cover w-full h-full">
+          </button>
+          <button type="button" id="thumb-2" onclick="switchImage('watch_2.webp', 'thumb-2')" class="aspect-square rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition">
+            <img src="watch_2.webp" class="object-cover w-full h-full">
+          </button>
+        </div>
       </div>
+
+      <!-- 商品資訊與購買區 -->
       <div class="flex flex-col justify-between">
         <div>
           <span class="bg-red-50 text-red-600 text-xs px-2.5 py-0.5 rounded font-bold">促銷中</span>
           <h1 class="text-2xl font-bold text-gray-900 mt-2 mb-2">Apple Watch Series 11 GPS 42mm 曜石黑色鋁金屬 錶殼搭配黑色運動錶帶</h1>
-          <p class="text-sm text-gray-500 mb-4">藍寶石玻璃鏡面、航海級金屬外殼、支援全天候精準健康監測。</p>
+          <p class="text-sm text-gray-500 mb-4">藍寶石玻璃鏡面、航海級金屬外殼、支援全天候精準健康監測與長效雙週續航。</p>
+          
           <div class="bg-gray-50 p-4 rounded-xl mb-4 border">
             <div class="flex items-baseline space-x-3">
               <span class="text-3xl font-extrabold text-red-600">NT$ 11,900</span>
@@ -27,21 +43,30 @@
             </div>
             <p class="text-xs text-red-500 mt-1">★ 專屬折抵 NT$ 1,000</p>
           </div>
+
           <div class="border-t border-b py-3 text-sm flex justify-between">
             <span class="text-gray-500">物流運費</span>
             <span class="font-bold text-gray-800">標準物流運費 NT$ 90</span>
           </div>
         </div>
+
         <button id="checkout-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg mt-6 transition">
           確認選購並前往結帳 (總額 NT$ 11,990)
         </button>
       </div>
     </div>
   </main>
+
   <script>
+    function switchImage(src, activeId) {
+      document.getElementById('main-product-img').src = src;
+      document.getElementById('thumb-1').className = 'aspect-square rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition ' + (activeId === 'thumb-1' ? 'border-blue-500' : 'border-gray-200');
+      document.getElementById('thumb-2').className = 'aspect-square rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition ' + (activeId === 'thumb-2' ? 'border-blue-500' : 'border-gray-200');
+    }
+
     document.getElementById('checkout-btn').addEventListener('click', () => {
       alert("選購評估完成！即將為您導回問卷繼續作答。");
-      window.location.href = "https://www.surveycake.com/s/7mZK1";
+      window.location.href = "https://www.surveycake.com/s/OOkbX";
     });
   </script>
 </body>
