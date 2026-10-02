@@ -91,23 +91,17 @@
     </div>
   </main>
 
-  <!-- 3. 選購確認明細彈窗（預設隱藏 hidden，所有內容皆完整包在內） -->
+  <!-- 選購確認明細彈窗 -->
   <div id="confirm-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative">
       <h3 class="text-xl font-bold text-gray-900 mb-6">選購確認明細</h3>
       
       <div class="space-y-3 text-base">
-        <!-- 第一行：原價 -->
+        <!-- 僅顯示特價金額與物流運費 -->
         <div class="flex justify-between text-gray-600">
-          <span>商品原價</span>
-          <span class="font-medium text-gray-900">NT$ 1,590</span>
+          <span>特價金額</span>
+          <span class="font-medium text-gray-900">NT$ 1,399</span>
         </div>
-        <!-- 第二行：優惠折抵 -->
-        <div class="flex justify-between text-red-600 font-medium">
-          <span>優惠折抵</span>
-          <span>- NT$ 191</span>
-        </div>
-        <!-- 第三行：運費 -->
         <div class="flex justify-between text-gray-600">
           <span>物流運費</span>
           <span class="font-medium text-gray-900">+ NT$ 90</span>
@@ -116,15 +110,15 @@
 
       <div class="border-t border-gray-100 my-5 pt-4 flex justify-between items-baseline">
         <span class="text-lg font-bold text-gray-900">應付總計</span>
-        <span class="text-3xl font-extrabold text-red-600">NT$ 1,489</span>
+        <span class="text-3xl font-extrabold text-gray-900">NT$ 1,489</span>
       </div>
 
-      <!-- 藍色學術免責聲明提示框（包在彈窗內部） -->
+      <!-- 藍色學術免責聲明提示框 -->
       <div class="bg-blue-50 border border-blue-100 rounded-xl p-3.5 mb-6 text-xs leading-relaxed text-blue-700">
         本情境僅供學術研究評估使用，不會產生任何實質金錢扣款或交易行為。請點擊下方按鈕返回問卷繼續作答。
       </div>
 
-      <!-- 綠色確認按鈕（包在彈窗內部） -->
+      <!-- 綠色確認按鈕 -->
       <button id="modal-submit-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl text-base shadow-md transition">
         確認選購意向並返回問卷
       </button>
