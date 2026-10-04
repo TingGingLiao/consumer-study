@@ -6,12 +6,10 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col justify-between">
-
-  <!-- Part 1 高單價專屬配色：深岩灰 (z-[60] 永不被遮蔽) -->
-  <div class="relative z-[60] bg-slate-800 text-slate-100 text-xs md:text-sm font-semibold py-2.5 px-4 text-center shadow-md flex items-center justify-center gap-2">
-    <span>📋</span>
-    <span>【學術研究聲明】本情境僅供學術問卷評估使用，全程不會產生任何實質金錢扣款或交易行為。</span>
-  </div>
+  <header class="bg-white border-b h-14 flex items-center px-4 max-w-5xl mx-auto w-full justify-between">
+    <span class="text-xl font-bold text-blue-600">SMART TECH</span>
+    <span class="text-xs text-gray-400">官方線上旗艦館</span>
+  </header>
 
   <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 grid md:grid-cols-2 gap-8 items-start">
@@ -19,19 +17,19 @@
       <!-- 圖片展示區（主大圖 + 3 張切換縮圖） -->
       <div>
         <div class="aspect-square bg-white rounded-xl overflow-hidden mb-3 border flex items-center justify-center p-2">
-          <img id="main-product-img" src="apple watch.webp" class="object-contain w-full h-full transition duration-200">
+          <img id="main-product-img" src="five flower.jfif" class="object-contain w-full h-full transition duration-200">
         </div>
         
         <!-- 底部 3 張切換小縮圖 -->
         <div class="flex gap-3">
-          <button type="button" id="thumb-1" onclick="switchImage('apple watch.webp', 'thumb-1')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-blue-500 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
-            <img src="apple watch.webp" class="object-contain w-full h-full">
+          <button type="button" id="thumb-1" onclick="switchImage('five flower.jfif', 'thumb-1')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-blue-500 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
+            <img src="five flower.jfif" class="object-contain w-full h-full">
           </button>
-          <button type="button" id="thumb-2" onclick="switchImage('apple watch 3.webp', 'thumb-2')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
-            <img src="apple watch 3.webp" class="object-contain w-full h-full">
+          <button type="button" id="thumb-2" onclick="switchImage('five flower 3.webp', 'thumb-2')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
+            <img src="five flower 3.webp" class="object-contain w-full h-full">
           </button>
-          <button type="button" id="thumb-3" onclick="switchImage('apple watch 2.webp', 'thumb-3')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
-            <img src="apple watch 2.webp" class="object-contain w-full h-full">
+          <button type="button" id="thumb-3" onclick="switchImage('five flower 2.webp', 'thumb-3')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
+            <img src="five flower 2.webp" class="object-contain w-full h-full">
           </button>
         </div>
       </div>
@@ -44,18 +42,17 @@
           
           <!-- 直式條列商品特色 -->
           <ul class="text-sm text-gray-700 space-y-1.5 mb-5 list-disc list-inside">
-            <li>鋁金屬錶殼</li>
-            <li>S10 晶片配備 64 位元雙核心處理器</li>
-            <li>隨顯 Retina 顯示器，具備廣視角 OLED 與 LTPO3</li>
-            <li>正常使用最長可達 24 小時</li>
+            <li>柔軟又強韌</li>
+            <li>獨家柔織交織技術</li>
+            <li>柔韌版全新升級</li>
           </ul>
           
           <div class="bg-gray-50 p-4 rounded-xl mb-4 border">
             <div class="flex items-baseline space-x-3">
-              <span class="text-3xl font-extrabold text-red-600">NT$ 11,900</span>
-              <span class="text-sm text-gray-400 line-through">原價 NT$ 12,900</span>
+              <span class="text-3xl font-extrabold text-red-600">NT$ 299</span>
+              <span class="text-sm text-gray-400 line-through">原價 NT$ 399</span>
             </div>
-            <p class="text-xs text-red-500 mt-1">★ 專屬折抵 NT$ 1,000</p>
+            <p class="text-xs text-red-500 mt-1">★ 專屬折抵 NT$ 100</p>
           </div>
 
           <div class="border-t border-b py-3 text-sm flex justify-between">
@@ -80,11 +77,11 @@
       <div class="space-y-3 text-base">
         <div class="flex justify-between text-gray-600">
           <span>商品原價</span>
-          <span class="font-medium text-gray-900">NT$ 12,900</span>
+          <span class="font-medium text-gray-900">NT$ 399</span>
         </div>
         <div class="flex justify-between text-red-600">
           <span>專屬折抵</span>
-          <span class="font-medium">- NT$ 1,000</span>
+          <span class="font-medium">- NT$ 100</span>
         </div>
         <div class="flex justify-between text-gray-600">
           <span>物流運費</span>
@@ -94,7 +91,7 @@
 
       <div class="border-t border-gray-100 my-5 pt-4 flex justify-between items-baseline">
         <span class="text-lg font-bold text-gray-900">應付總計</span>
-        <span class="text-3xl font-extrabold text-red-600">NT$ 11,945</span>
+        <span class="text-3xl font-extrabold text-red-600">NT$ 344</span>
       </div>
 
       <div class="bg-blue-50 border border-blue-100 rounded-xl p-3.5 mb-6 text-xs leading-relaxed text-blue-700">
@@ -124,7 +121,7 @@
     });
 
     document.getElementById('modal-submit-btn').addEventListener('click', () => {
-      window.location.href = "https://www.surveycake.com/s/7mZK1";
+      window.location.href = "https://www.surveycake.com/s/b6gn1";
     });
   </script>
 </body>
