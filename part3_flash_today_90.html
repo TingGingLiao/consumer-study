@@ -7,7 +7,7 @@
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col justify-between">
 
-  <!-- 1. 進場彈窗：突發性限時快閃（真實倒數至當日 23:59:59） -->
+  <!-- 1. 進場彈窗：電商標準限時搶購公告（精準倒數至當日 23:59:59） -->
   <div id="promo-modal" class="fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative text-center border-t-8 border-amber-500">
       <button type="button" onclick="closePromoModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold p-1">✕</button>
@@ -16,12 +16,12 @@
         ⚡
       </div>
       
-      <span class="bg-red-600 text-white text-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">今日特惠倒數中</span>
-      <h2 class="text-2xl font-black text-gray-900 mt-2 mb-2">⚡ 突發快閃・僅限今日特惠</h2>
+      <span class="bg-red-600 text-white text-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">今日限定專案</span>
+      <h2 class="text-2xl font-black text-gray-900 mt-2 mb-2">⚡ 限時快閃結帳特惠</h2>
       
-      <!-- 動態倒數計時框：即時顯示距午夜 0 時剩餘時間 -->
+      <!-- 動態倒數計時框 -->
       <div class="bg-amber-50 border border-amber-200 rounded-2xl p-3.5 my-4">
-        <p class="text-xs text-amber-800 font-bold mb-2">距今日特惠結束（今晚 24:00）僅剩：</p>
+        <p class="text-xs text-amber-800 font-bold mb-2">活動截止倒數（今晚 24:00 準時結束）：</p>
         <div class="flex justify-center items-center gap-2 text-white font-mono font-black text-xl">
           <span id="cd-hours" class="bg-gray-900 px-3 py-1.5 rounded-lg shadow-sm">00</span>
           <span class="text-gray-900 font-sans font-bold">:</span>
@@ -32,16 +32,16 @@
       </div>
 
       <p class="text-xs text-gray-600 mb-6 leading-relaxed">
-        年度熱銷行動電源限時破盤下殺！<strong class="text-red-600 font-bold">特惠僅限今日 24:00 前下單</strong>，倒數歸零即刻恢復原價！
+        品牌旗艦熱銷商品限時回饋！<strong class="text-red-600 font-bold">優惠僅限今日 24:00 前完成結帳</strong>，逾期活動即刻結束。
       </p>
       
       <button type="button" onclick="closePromoModal()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3.5 rounded-xl shadow-lg transition">
-        立即搶購 (今日限定價)
+        進入賣場立即選購
       </button>
     </div>
   </div>
 
-  <!-- 頂部導覽列 -->
+  <!-- 頁首導覽列 -->
   <header class="bg-white border-b h-14 flex items-center px-4 max-w-5xl mx-auto w-full justify-between">
     <span class="text-xl font-bold text-blue-600">SMART TECH</span>
     <span class="text-xs text-gray-400">官方線上旗艦館</span>
@@ -51,7 +51,7 @@
   <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 grid md:grid-cols-2 gap-8 items-start">
       
-      <!-- 圖片展示區 (3張切換) -->
+      <!-- 圖片展示區 -->
       <div>
         <div class="aspect-square bg-white rounded-xl overflow-hidden mb-3 border flex items-center justify-center p-2">
           <img id="main-product-img" src="philips_1.webp" class="object-contain w-full h-full transition duration-200">
@@ -74,7 +74,7 @@
         <div>
           <div class="flex items-center gap-2 mb-2">
             <span class="bg-amber-500 text-white text-xs px-2.5 py-1 rounded font-bold">⚡ 今日快閃限定</span>
-            <span class="bg-red-50 text-red-600 text-xs px-2 py-0.5 rounded font-semibold border border-red-200">限時優惠中</span>
+            <span class="bg-red-50 text-red-600 text-xs px-2 py-0.5 rounded font-semibold border border-red-200">限時專案價</span>
           </div>
           
           <h1 class="text-2xl font-bold text-gray-900 mb-3 leading-snug">PHILIPS 飛利浦10000mAh多合一螢幕顯示行動電源(磁吸/自帶雙線/無線/37Wh_具Wh標示)</h1>
@@ -86,12 +86,13 @@
             <li>隱藏式手機支架，輕鬆追劇不礙事</li>
           </ul>
           
+          <!-- 價格區：電商標準並陳標記 -->
           <div class="bg-amber-50/50 p-4 rounded-xl mb-4 border border-amber-200">
             <div class="flex items-baseline space-x-3">
               <span class="text-3xl font-extrabold text-red-600">NT$ 1,399</span>
-              <span class="text-sm text-gray-400 line-through">原價 NT$ 1,590</span>
+              <span class="text-sm text-gray-400 line-through">建議售價 NT$ 1,590</span>
             </div>
-            <p class="text-xs text-amber-700 mt-1 font-bold">⚡ 快閃促銷：今日下單現省 NT$ 191，活動過後立即回歸原價</p>
+            <p class="text-xs text-amber-700 mt-1.5 font-bold">⚡ 快閃促銷：今日下單現省 NT$ 191，倒數結束即恢復原價</p>
           </div>
 
           <div class="border-t border-b py-3 text-sm flex justify-between">
@@ -101,38 +102,45 @@
         </div>
 
         <button id="checkout-btn" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3.5 rounded-xl shadow-lg mt-6 transition">
-          立即搶購並前往結帳 (總額 NT$ 1,489)
+          立即搶購並前往結帳 (應付金額 NT$ 1,489)
         </button>
       </div>
 
     </div>
   </main>
 
-  <!-- 3. 選購確認明細彈窗（預設隱藏） -->
+  <!-- 3. 選購確認明細彈窗（電商明細結構） -->
   <div id="confirm-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative">
       <h3 class="text-xl font-bold text-gray-900 mb-6">選購確認明細</h3>
       
       <div class="space-y-3 text-base">
         <div class="flex justify-between text-gray-600">
-          <span>特價金額</span>
-          <span class="font-medium text-gray-900">NT$ 1,399</span>
+          <span>商品原價</span>
+          <span class="font-medium text-gray-900">NT$ 1,590</span>
+        </div>
+        <div class="flex justify-between text-red-600 font-medium">
+          <span>限時活動折抵</span>
+          <span>- NT$ 191</span>
         </div>
         <div class="flex justify-between text-gray-600">
-          <span>物流運費</span>
+          <span>標準運費</span>
           <span class="font-medium text-gray-900">+ NT$ 90</span>
         </div>
       </div>
 
+      <!-- 應付結算 -->
       <div class="border-t border-gray-100 my-5 pt-4 flex justify-between items-baseline">
-        <span class="text-lg font-bold text-gray-900">應付總計</span>
+        <span class="text-lg font-bold text-gray-900">結帳總金額</span>
         <span class="text-3xl font-extrabold text-red-600">NT$ 1,489</span>
       </div>
 
+      <!-- 提示條款區塊 -->
       <div class="bg-blue-50 border border-blue-100 rounded-xl p-3.5 mb-6 text-xs leading-relaxed text-blue-700">
         本情境僅供學術研究評估使用，不會產生任何實質金錢扣款或交易行為。請點擊下方按鈕返回問卷繼續作答。
       </div>
 
+      <!-- 確認按鈕 -->
       <button id="modal-submit-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl text-base shadow-md transition">
         確認選購意向並返回問卷
       </button>
@@ -140,12 +148,10 @@
   </div>
 
   <script>
-    // 關閉進場促銷彈窗
     function closePromoModal() {
       document.getElementById('promo-modal').classList.add('hidden');
     }
 
-    // 縮圖切換功能
     function switchImage(src, activeId) {
       document.getElementById('main-product-img').src = src;
       ['thumb-1', 'thumb-2', 'thumb-3'].forEach(id => {
@@ -156,7 +162,6 @@
       });
     }
 
-    // 結帳彈窗控制
     document.getElementById('checkout-btn').addEventListener('click', () => {
       document.getElementById('confirm-modal').classList.remove('hidden');
     });
@@ -165,15 +170,12 @@
       window.location.href = "https://www.surveycake.com/s/OOkbX";
     });
 
-    // 動態倒數計時功能：自動抓取當前時間，精準計算至今日午夜 23:59:59，隔天 0 時自動開啟新一輪
+    // 依據當前時間計算至當天午夜 23:59:59 截止，跨日自動重算
     function updateMidnightCountdown() {
       const now = new Date();
-      // 設定目標時間為當天的 23:59:59 (即午夜 0 時截止)
       const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
       
       let diff = Math.floor((midnight - now) / 1000);
-
-      // 當超過 23:59:59 進入隔天 0 時瞬間，自動重置為 24 小時倒數
       if (diff < 0) {
         diff = 24 * 3600 - 1;
       }
@@ -193,9 +195,7 @@
       }
     }
 
-    // 頁面載入時立即計算一次，避免畫面空白延遲
     updateMidnightCountdown();
-    // 每秒動態更新一次
     setInterval(updateMidnightCountdown, 1000);
   </script>
 </body>
