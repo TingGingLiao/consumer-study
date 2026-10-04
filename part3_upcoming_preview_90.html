@@ -13,19 +13,34 @@
     <span>【學術研究聲明】本情境僅供學術問卷評估使用，全程不會產生任何實質金錢扣款或交易行為。</span>
   </div>
 
-  <!-- 1. 進場預告彈窗 (下週特惠預告) -->
+  <!-- 1. 進場預告彈窗：內建「距開跑還剩多久」動態倒數計時器 -->
   <div id="promo-modal" class="fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative text-center border-t-8 border-indigo-600">
       <button type="button" onclick="closePromoModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold p-1">✕</button>
       
-      <div class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold shadow-inner">
+      <div class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl font-bold shadow-inner">
         📅
       </div>
       
-      <span class="bg-indigo-600 text-white text-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">活動特惠預告</span>
+      <span class="bg-indigo-600 text-white text-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">活動即將開跑</span>
       <h2 class="text-2xl font-black text-gray-900 mt-2 mb-2">📅 品牌特選・下週特惠預告</h2>
       
-      <p class="text-sm text-gray-600 mb-6 leading-relaxed">
+      <!-- 動態開跑倒數計時框：顯示天數與時分秒 -->
+      <div class="bg-indigo-50 border border-indigo-200 rounded-2xl p-3.5 my-4">
+        <p class="text-xs text-indigo-800 font-bold mb-2">距特惠活動正式開放下單還剩：</p>
+        <div class="flex justify-center items-center gap-1.5 text-white font-mono font-black text-lg">
+          <div class="flex items-baseline bg-indigo-950 px-2.5 py-1.5 rounded-lg shadow-sm">
+            <span id="cd-days">04</span><span class="text-xs font-sans ml-1 text-indigo-200">天</span>
+          </div>
+          <span id="cd-hours" class="bg-indigo-950 px-2 py-1.5 rounded-lg shadow-sm">16</span>
+          <span class="text-indigo-950 font-sans font-bold">:</span>
+          <span id="cd-minutes" class="bg-indigo-950 px-2 py-1.5 rounded-lg shadow-sm">35</span>
+          <span class="text-indigo-950 font-sans font-bold">:</span>
+          <span id="cd-seconds" class="bg-indigo-700 px-2 py-1.5 rounded-lg shadow-sm animate-pulse">42</span>
+        </div>
+      </div>
+
+      <p class="text-xs text-gray-600 mb-6 leading-relaxed">
         下週全館優惠即將盛大登場！<strong class="text-indigo-600 font-extrabold text-base">預約特惠價 NT$ 1,399</strong>，提早評估選購，享有充裕的挑選與準備時間！
       </p>
       
@@ -80,13 +95,13 @@
             <li>隱藏式手機支架，輕鬆追劇不礙事</li>
           </ul>
           
-          <!-- 價格預告區塊 -->
+          <!-- 價格預告區塊：並陳特價與建議售價 -->
           <div class="bg-indigo-50/50 p-4 rounded-xl mb-4 border border-indigo-100">
             <div class="flex items-baseline space-x-3">
-              <span class="text-3xl font-extrabold text-gray-900">NT$ 1,399</span>
-              <span class="text-sm text-gray-400">參考定價 NT$ 1,590</span>
+              <span class="text-3xl font-extrabold text-indigo-900">NT$ 1,399</span>
+              <span class="text-sm text-gray-400 line-through">建議售價 NT$ 1,590</span>
             </div>
-            <p class="text-xs text-indigo-700 mt-1 font-medium">📅 下週專屬活動價：下週起正式開放結帳，現可先行加入選購清單</p>
+            <p class="text-xs text-indigo-700 mt-1.5 font-bold">📅 下週專屬活動價：下週起正式開放結帳，現可先行加入選購清單</p>
           </div>
 
           <div class="border-t border-b py-3 text-sm flex justify-between">
@@ -103,7 +118,7 @@
     </div>
   </main>
 
-  <!-- 3. 選購確認明細彈窗（完整四行明細，高運費 NT$ 90） -->
+  <!-- 3. 選購確認明細彈窗（完整四行明細） -->
   <div id="confirm-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative">
       <h3 class="text-xl font-bold text-gray-900 mb-6">選購確認明細</h3>
@@ -129,7 +144,7 @@
       <!-- 4. 商品總收費 -->
       <div class="border-t border-gray-100 my-5 pt-4 flex justify-between items-baseline">
         <span class="text-lg font-bold text-gray-900">商品總收費</span>
-        <span class="text-3xl font-extrabold text-gray-900">NT$ 1,489</span>
+        <span class="text-3xl font-extrabold text-indigo-900">NT$ 1,489</span>
       </div>
 
       <!-- 學術免責提示框 -->
@@ -145,23 +160,18 @@
   </div>
 
   <script>
-    // 關閉進場促銷彈窗
     function closePromoModal() {
       document.getElementById('promo-modal').classList.add('hidden');
     }
 
-    // 縮圖切換功能
     function switchImage(src, activeId) {
       document.getElementById('main-product-img').src = src;
       ['thumb-1', 'thumb-2', 'thumb-3'].forEach(id => {
         const el = document.getElementById(id);
-        if (el) {
-          el.className = 'w-16 h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white ' + (activeId === id ? 'border-indigo-600' : 'border-gray-200');
-        }
+        if (el) el.className = 'w-16 h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white ' + (activeId === id ? 'border-indigo-600' : 'border-gray-200');
       });
     }
 
-    // 結帳彈窗控制
     document.getElementById('checkout-btn').addEventListener('click', () => {
       document.getElementById('confirm-modal').classList.remove('hidden');
     });
@@ -169,6 +179,34 @@
     document.getElementById('modal-submit-btn').addEventListener('click', () => {
       window.location.href = "https://www.surveycake.com/s/OOkbX";
     });
+
+    // 預告開跑倒數計時功能：預設從 4天 16小時 35分 42秒 開始動態遞減（強化充裕期待感）
+    let totalSecondsUpcoming = (4 * 24 * 3600) + (16 * 3600) + (35 * 60) + 42;
+
+    function updateUpcomingCountdown() {
+      if (totalSecondsUpcoming <= 0) return;
+      totalSecondsUpcoming--;
+
+      const days = Math.floor(totalSecondsUpcoming / (24 * 3600));
+      const remSecs = totalSecondsUpcoming % (24 * 3600);
+      const hrs = Math.floor(remSecs / 3600);
+      const mins = Math.floor((remSecs % 3600) / 60);
+      const secs = remSecs % 60;
+
+      const elD = document.getElementById('cd-days');
+      const elH = document.getElementById('cd-hours');
+      const elM = document.getElementById('cd-minutes');
+      const elS = document.getElementById('cd-seconds');
+
+      if (elD && elH && elM && elS) {
+        elD.textContent = String(days).padStart(2, '0');
+        elH.textContent = String(hrs).padStart(2, '0');
+        elM.textContent = String(mins).padStart(2, '0');
+        elS.textContent = String(secs).padStart(2, '0');
+      }
+    }
+
+    setInterval(updateUpcomingCountdown, 1000);
   </script>
 </body>
 </html>
