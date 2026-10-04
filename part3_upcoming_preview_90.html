@@ -13,7 +13,7 @@
     <span>【學術研究聲明】本情境僅供學術問卷評估使用，全程不會產生任何實質金錢扣款或交易行為。</span>
   </div>
 
-  <!-- 1. 進場預告彈窗：內建「距開跑還剩多久」動態倒數計時器 -->
+  <!-- 1. 進場預告彈窗：內建「一週鎖定防刷新倒數計時器」 -->
   <div id="promo-modal" class="fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative text-center border-t-8 border-indigo-600">
       <button type="button" onclick="closePromoModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold p-1">✕</button>
@@ -30,13 +30,13 @@
         <p class="text-xs text-indigo-800 font-bold mb-2">距特惠活動正式開放下單還剩：</p>
         <div class="flex justify-center items-center gap-1.5 text-white font-mono font-black text-lg">
           <div class="flex items-baseline bg-indigo-950 px-2.5 py-1.5 rounded-lg shadow-sm">
-            <span id="cd-days">04</span><span class="text-xs font-sans ml-1 text-indigo-200">天</span>
+            <span id="cd-days">07</span><span class="text-xs font-sans ml-1 text-indigo-200">天</span>
           </div>
-          <span id="cd-hours" class="bg-indigo-950 px-2 py-1.5 rounded-lg shadow-sm">16</span>
+          <span id="cd-hours" class="bg-indigo-950 px-2 py-1.5 rounded-lg shadow-sm">00</span>
           <span class="text-indigo-950 font-sans font-bold">:</span>
-          <span id="cd-minutes" class="bg-indigo-950 px-2 py-1.5 rounded-lg shadow-sm">35</span>
+          <span id="cd-minutes" class="bg-indigo-950 px-2 py-1.5 rounded-lg shadow-sm">00</span>
           <span class="text-indigo-950 font-sans font-bold">:</span>
-          <span id="cd-seconds" class="bg-indigo-700 px-2 py-1.5 rounded-lg shadow-sm animate-pulse">42</span>
+          <span id="cd-seconds" class="bg-indigo-700 px-2 py-1.5 rounded-lg shadow-sm animate-pulse">00</span>
         </div>
       </div>
 
@@ -168,7 +168,9 @@
       document.getElementById('main-product-img').src = src;
       ['thumb-1', 'thumb-2', 'thumb-3'].forEach(id => {
         const el = document.getElementById(id);
-        if (el) el.className = 'w-16 h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white ' + (activeId === id ? 'border-indigo-600' : 'border-gray-200');
+        if (el) {
+          el.className = 'w-16 h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white ' + (activeId === id ? 'border-indigo-600' : 'border-gray-200');
+        }
       });
     }
 
@@ -180,15 +182,27 @@
       window.location.href = "https://www.surveycake.com/s/OOkbX";
     });
 
-    // 預告開跑倒數計時功能：預設從 4天 16小時 35分 42秒 開始動態遞減（強化充裕期待感）
-    let totalSecondsUpcoming = (4 * 24 * 3600) + (16 * 3600) + (35 * 60) + 42;
+    // 🌟 一週防刷新倒數核心邏輯：鎖定 7 天 (7 * 24 * 3600 秒) 且使用 localStorage 記憶
+    const STORAGE_KEY = 'study_part3_target_time';
+    const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+
+    let targetTime = localStorage.getItem(STORAGE_KEY);
+    const now = new Date().getTime();
+
+    // 如果沒有紀錄或時間已經過期，則重新設定為「當前時間 + 7 天」
+    if (!targetTime || now >= parseInt(targetTime)) {
+      targetTime = now + ONE_WEEK_MS;
+      localStorage.setItem(STORAGE_KEY, targetTime);
+    } else {
+      targetTime = parseInt(targetTime);
+    }
 
     function updateUpcomingCountdown() {
-      if (totalSecondsUpcoming <= 0) return;
-      totalSecondsUpcoming--;
+      const currentTime = new Date().getTime();
+      let diffSeconds = Math.max(0, Math.floor((targetTime - currentTime) / 1000));
 
-      const days = Math.floor(totalSecondsUpcoming / (24 * 3600));
-      const remSecs = totalSecondsUpcoming % (24 * 3600);
+      const days = Math.floor(diffSeconds / (24 * 3600));
+      const remSecs = diffSeconds % (24 * 3600);
       const hrs = Math.floor(remSecs / 3600);
       const mins = Math.floor((remSecs % 3600) / 60);
       const secs = remSecs % 60;
@@ -206,6 +220,8 @@
       }
     }
 
+    // 立即更新一次，隨後每秒精準刷新
+    updateUpcomingCountdown();
     setInterval(updateUpcomingCountdown, 1000);
   </script>
 </body>
