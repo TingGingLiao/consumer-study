@@ -7,42 +7,34 @@
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col justify-between">
 
-  <!-- Part 1 高單價專屬配色：深岩灰 (z-[60] 永不被遮蔽) -->
+  <!-- 頂部學術免責通告列：Part 1 高單價專屬深岩灰色系 (z-[60] 永不被遮蔽) -->
   <div class="relative z-[60] bg-slate-800 text-slate-100 text-xs md:text-sm font-semibold py-2.5 px-4 text-center shadow-md flex items-center justify-center gap-2">
     <span>📋</span>
     <span>【學術研究聲明】本情境僅供學術問卷評估使用，全程不會產生任何實質金錢扣款或交易行為。</span>
   </div>
 
+  <!-- 頁首導覽列 -->
+  <header class="bg-white border-b h-14 flex items-center px-4 max-w-5xl mx-auto w-full justify-between">
+    <span class="text-xl font-bold text-gray-900 tracking-wider">SMART TECH</span>
+    <span class="text-xs text-gray-400">官方線上旗艦館</span>
+  </header>
+
+  <!-- 主商品展示區 -->
   <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 grid md:grid-cols-2 gap-8 items-start">
       
-      <!-- 圖片展示區（主大圖 + 3 張切換縮圖） -->
+      <!-- 商品圖片 -->
       <div>
-        <div class="aspect-square bg-white rounded-xl overflow-hidden mb-3 border flex items-center justify-center p-2">
-          <img id="main-product-img" src="apple watch.webp" class="object-contain w-full h-full transition duration-200">
-        </div>
-        
-        <!-- 底部 3 張切換小縮圖 -->
-        <div class="flex gap-3">
-          <button type="button" id="thumb-1" onclick="switchImage('apple watch.webp', 'thumb-1')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-blue-500 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
-            <img src="apple watch.webp" class="object-contain w-full h-full">
-          </button>
-          <button type="button" id="thumb-2" onclick="switchImage('apple watch 3.webp', 'thumb-2')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
-            <img src="apple watch 3.webp" class="object-contain w-full h-full">
-          </button>
-          <button type="button" id="thumb-3" onclick="switchImage('apple watch 2.webp', 'thumb-3')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
-            <img src="apple watch 2.webp" class="object-contain w-full h-full">
-          </button>
+        <div class="aspect-square bg-white rounded-xl overflow-hidden mb-3 border flex items-center justify-center p-4">
+          <img id="main-product-img" src="apple_watch.webp" class="object-contain w-full h-full transition duration-200">
         </div>
       </div>
 
-      <!-- 右側商品資訊與購買區 -->
+      <!-- 商品資訊區 -->
       <div class="flex flex-col justify-between">
         <div>
-          <span class="bg-red-50 text-red-600 text-xs px-2.5 py-0.5 rounded font-bold">促銷中</span>
-          <h1 class="text-2xl font-bold text-gray-900 mt-2 mb-3 leading-snug">Apple Watch Series 11 GPS 42mm 曜石黑色鋁金屬 錶殼搭配黑色運動錶帶</h1>
-          
-          <!-- 直式條列商品特色 -->
+          <span class="bg-gray-100 text-gray-800 text-xs px-2.5 py-1 rounded font-semibold">旗艦新品</span>
+          <h1 class="text-2xl font-bold text-gray-900 mt-2 mb-3 leading-snug">Apple Watch Series 智能運動健康手錶 (GPS / 45mm)</h1>
           <ul class="text-sm text-gray-700 space-y-1.5 mb-5 list-disc list-inside">
             <li>鋁金屬錶殼</li>
             <li>S10 晶片配備 64 位元雙核心處理器</li>
@@ -51,20 +43,16 @@
           </ul>
           
           <div class="bg-gray-50 p-4 rounded-xl mb-4 border">
-            <div class="flex items-baseline space-x-3">
-              <span class="text-3xl font-extrabold text-red-600">NT$ 11,900</span>
-              <span class="text-sm text-gray-400 line-through">原價 NT$ 12,900</span>
-            </div>
-            <p class="text-xs text-red-500 mt-1">★ 專屬折抵 NT$ 1,000</p>
+            <span class="text-3xl font-extrabold text-gray-900">NT$ 13,900</span>
           </div>
 
           <div class="border-t border-b py-3 text-sm flex justify-between">
             <span class="text-gray-500">物流運費</span>
-            <span class="font-bold text-gray-800">標準物流運費 NT$ 90</span>
+            <span class="font-bold text-gray-800">標準物流運費 NT$ 45</span>
           </div>
         </div>
 
-        <button id="checkout-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg mt-6 transition">
+        <button id="checkout-btn" class="w-full bg-gray-900 hover:bg-black text-white font-bold py-3.5 rounded-xl shadow-lg mt-6 transition">
           確認選購並前往結帳
         </button>
       </div>
@@ -72,29 +60,25 @@
     </div>
   </main>
 
-  <!-- 選購確認明細彈窗 -->
+  <!-- 選購確認明細彈窗（預設隱藏） -->
   <div id="confirm-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative">
       <h3 class="text-xl font-bold text-gray-900 mb-6">選購確認明細</h3>
       
       <div class="space-y-3 text-base">
         <div class="flex justify-between text-gray-600">
-          <span>商品原價</span>
-          <span class="font-medium text-gray-900">NT$ 12,900</span>
-        </div>
-        <div class="flex justify-between text-red-600">
-          <span>專屬折抵</span>
-          <span class="font-medium">- NT$ 1,000</span>
+          <span>商品金額</span>
+          <span class="font-medium text-gray-900">NT$ 13,900</span>
         </div>
         <div class="flex justify-between text-gray-600">
           <span>物流運費</span>
-          <span class="font-medium text-gray-900">+ NT$ 45</span>
+          <span class="font-medium text-gray-900">+ NT$ 90</span>
         </div>
       </div>
 
       <div class="border-t border-gray-100 my-5 pt-4 flex justify-between items-baseline">
-        <span class="text-lg font-bold text-gray-900">應付總計</span>
-        <span class="text-3xl font-extrabold text-red-600">NT$ 11,945</span>
+        <span class="text-lg font-bold text-gray-900">商品總收費</span>
+        <span class="text-3xl font-extrabold text-gray-900">NT$ 13,945</span>
       </div>
 
       <div class="bg-blue-50 border border-blue-100 rounded-xl p-3.5 mb-6 text-xs leading-relaxed text-blue-700">
@@ -108,23 +92,12 @@
   </div>
 
   <script>
-    // 支援 3 張縮圖的圖片切換與藍框高亮判斷
-    function switchImage(src, activeId) {
-      document.getElementById('main-product-img').src = src;
-      ['thumb-1', 'thumb-2', 'thumb-3'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.className = 'w-16 h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white ' + (activeId === id ? 'border-blue-500' : 'border-gray-200');
-        }
-      });
-    }
-
     document.getElementById('checkout-btn').addEventListener('click', () => {
       document.getElementById('confirm-modal').classList.remove('hidden');
     });
 
     document.getElementById('modal-submit-btn').addEventListener('click', () => {
-      window.location.href = "https://www.surveycake.com/s/7mZK1";
+      window.location.href = "https://www.surveycake.com/s/OOkbX";
     });
   </script>
 </body>
