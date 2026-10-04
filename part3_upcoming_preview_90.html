@@ -23,11 +23,11 @@
       </div>
       
       <span class="bg-indigo-600 text-white text-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">活動即將開跑</span>
-      <h2 class="text-2xl font-black text-gray-900 mt-2 mb-2">📅 品牌特選・下週特惠預告</h2>
+      <h2 class="text-2xl font-black text-gray-900 mt-2 mb-2">📅 下週特惠預告</h2>
       
       <!-- 動態開跑倒數計時框：顯示天數與時分秒 -->
       <div class="bg-indigo-50 border border-indigo-200 rounded-2xl p-3.5 my-4">
-        <p class="text-xs text-indigo-800 font-bold mb-2">距特惠活動正式開放下單還剩：</p>
+        <p class="text-xs text-indigo-800 font-bold mb-2">距特惠活動正式開放還剩：</p>
         <div class="flex justify-center items-center gap-1.5 text-white font-mono font-black text-lg">
           <div class="flex items-baseline bg-indigo-950 px-2.5 py-1.5 rounded-lg shadow-sm">
             <span id="cd-days">07</span><span class="text-xs font-sans ml-1 text-indigo-200">天</span>
@@ -41,7 +41,7 @@
       </div>
 
       <p class="text-xs text-gray-600 mb-6 leading-relaxed">
-        下週全館優惠即將盛大登場！<strong class="text-indigo-600 font-extrabold text-base">預約特惠價 NT$ 1,399</strong>，提早評估選購，享有充裕的挑選與準備時間！
+        全館特惠即將盛大登場！<strong class="text-indigo-600 font-bold">精選熱銷商品將享有專案折扣</strong>，歡迎進入賣場提早評估選購，享有充裕的挑選與準備時間！
       </p>
       
       <button type="button" onclick="closePromoModal()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition">
@@ -63,17 +63,17 @@
       <!-- 圖片展示區 (3張切換) -->
       <div>
         <div class="aspect-square bg-white rounded-xl overflow-hidden mb-3 border flex items-center justify-center p-2">
-          <img id="main-product-img" src="philips_1.webp" class="object-contain w-full h-full transition duration-200">
+          <img id="main-product-img" src="power1.webp" class="object-contain w-full h-full transition duration-200">
         </div>
         <div class="flex gap-3">
-          <button type="button" id="thumb-1" onclick="switchImage('philips_1.webp', 'thumb-1')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-indigo-600 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
-            <img src="philips_1.webp" class="object-contain w-full h-full">
+          <button type="button" id="thumb-1" onclick="switchImage('power1.webp', 'thumb-1')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-indigo-600 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
+            <img src="power1.webp" class="object-contain w-full h-full">
           </button>
-          <button type="button" id="thumb-2" onclick="switchImage('philips_2.webp', 'thumb-2')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
-            <img src="philips_2.webp" class="object-contain w-full h-full">
+          <button type="button" id="thumb-2" onclick="switchImage('power2.webp', 'thumb-2')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
+            <img src="power2.webp" class="object-contain w-full h-full">
           </button>
-          <button type="button" id="thumb-3" onclick="switchImage('philips_3.webp', 'thumb-3')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
-            <img src="philips_3.webp" class="object-contain w-full h-full">
+          <button type="button" id="thumb-3" onclick="switchImage('power3.webp', 'thumb-3')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
+            <img src="power3.webp" class="object-contain w-full h-full">
           </button>
         </div>
       </div>
@@ -101,7 +101,7 @@
               <span class="text-3xl font-extrabold text-indigo-900">NT$ 1,399</span>
               <span class="text-sm text-gray-400 line-through">建議售價 NT$ 1,590</span>
             </div>
-            <p class="text-xs text-indigo-700 mt-1.5 font-bold">📅 下週專屬活動價：下週起正式開放結帳，現可先行加入選購清單</p>
+            <p class="text-xs text-indigo-700 mt-1.5 font-bold">📅 下週專屬活動價：下週起正式開放結帳，可先行加入選購清單</p>
           </div>
 
           <div class="border-t border-b py-3 text-sm flex justify-between">
@@ -111,7 +111,7 @@
         </div>
 
         <button id="checkout-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-lg mt-6 transition">
-          預約選購並前往結帳 (應付金額 NT$ 1,489)
+          搶先預約特惠資格
         </button>
       </div>
 
@@ -121,12 +121,12 @@
   <!-- 3. 選購確認明細彈窗（完整四行明細） -->
   <div id="confirm-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative">
-      <h3 class="text-xl font-bold text-gray-900 mb-6">選購確認明細</h3>
+      <h3 class="text-xl font-bold text-gray-900 mb-6">預約選購明細</h3>
       
       <div class="space-y-3 text-base">
         <!-- 1. 商品原價 -->
         <div class="flex justify-between text-gray-600">
-          <span>商品原價</span>
+          <span>預計應付總額</span>
           <span class="font-medium text-gray-900">NT$ 1,590</span>
         </div>
         <!-- 2. 折扣金額 -->
@@ -154,7 +154,7 @@
 
       <!-- 確認按鈕 -->
       <button id="modal-submit-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl text-base shadow-md transition">
-        確認選購意向並返回問卷
+        確認預約意向並返回問卷
       </button>
     </div>
   </div>
@@ -179,7 +179,7 @@
     });
 
     document.getElementById('modal-submit-btn').addEventListener('click', () => {
-      window.location.href = "https://www.surveycake.com/s/OOkbX";
+      window.location.href = "https://www.surveycake.com/s/w3vo6";
     });
 
     // 🌟 一週防刷新倒數核心邏輯：鎖定 7 天 (7 * 24 * 3600 秒) 且使用 localStorage 記憶
