@@ -7,6 +7,12 @@
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col justify-between">
 
+  <!-- 頂部學術免責通告列：z-[60] 高於彈窗 z-50，彈窗出現時依然清晰可見 -->
+  <div class="relative z-[60] bg-blue-700 text-white text-xs md:text-sm font-semibold py-2.5 px-4 text-center shadow-md flex items-center justify-center gap-2">
+    <span>📋</span>
+    <span>【學術研究聲明】本情境僅供學術問卷評估使用，全程不會產生任何實質金錢扣款或交易行為。</span>
+  </div>
+
   <!-- 1. 進場彈窗：突發性限時快閃（內建動態跳動倒數計時器） -->
   <div id="promo-modal" class="fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative text-center border-t-8 border-amber-500">
