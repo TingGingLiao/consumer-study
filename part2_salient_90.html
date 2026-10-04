@@ -22,7 +22,7 @@
       </div>
       <h2 class="text-2xl font-black text-gray-900 mb-2">🎉 限時專屬・全館 88 折優惠</h2>
       <p class="text-sm text-gray-600 mb-6 leading-relaxed">
-        恭喜獲得專屬折扣資格！熱銷商品結帳直接享 <strong class="text-red-600 font-bold">88 折優惠</strong>，立即前往選購！
+        恭喜獲得專屬折扣資格！本檔熱銷商品結帳直接享 <strong class="text-red-600 font-bold">88 折優惠</strong>，立即前往選購！
       </p>
       <button type="button" onclick="closePromoModal()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition">
         立即領取 88 折選購
@@ -67,17 +67,17 @@
           <h1 class="text-2xl font-bold text-gray-900 mb-3 leading-snug">PHILIPS 飛利浦10000mAh多合一螢幕顯示行動電源(磁吸/自帶雙線/無線/37Wh_具Wh標示)</h1>
           <ul class="text-sm text-gray-700 space-y-1.5 mb-5 list-disc list-inside">
             <li>2種自帶線+雙口輸出+磁吸無線充電，可支援五台設備同時充電</li>
-            <li>雙系統適用-通過Qi技術認證及相容MagSafe，iOS & Android雙系統適用</li>
+            <li>雙系統適用-通過Qi技術認證及相容MagSafe，iOS & Android雙系統適用，滿足各式手機需求</li>
             <li>極速充電-提升充電效能25%，同時享有雙向快充功能，22.5W最高輸出</li>
             <li>隱藏式手機支架，輕鬆追劇不礙事</li>
           </ul>
           
-          <div class="bg-red-50/50 p-4 rounded-xl mb-4 border border-red-100">
-            <div class="flex items-baseline space-x-3">
-              <span class="text-3xl font-extrabold text-red-600">NT$ 1,399</span>
-              <span class="text-sm text-gray-400 line-through">建議售價 NT$ 1,590</span>
+          <!-- 價格區：純顯示折後特價，右側改為紅色「熱銷中」標籤 -->
+          <div class="bg-gray-50 p-4 rounded-xl mb-4 border">
+            <div class="flex items-center space-x-3">
+              <span class="text-3xl font-extrabold text-gray-900">NT$ 1,399</span>
+              <span class="text-xs font-bold text-red-600 bg-red-50 border border-red-200 px-2 py-0.5 rounded">熱銷中</span>
             </div>
-            <p class="text-xs text-red-700 mt-1 font-bold">🎉 全館專屬 88 折優惠，結帳現折 NT$ 191</p>
           </div>
 
           <div class="border-t border-b py-3 text-sm flex justify-between">
@@ -87,26 +87,22 @@
         </div>
 
         <button id="checkout-btn" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl shadow-lg mt-6 transition">
-          確認選購並前往結帳
+          確認選購並前往結帳 (應付金額 NT$ 1,489)
         </button>
       </div>
 
     </div>
   </main>
 
-  <!-- 3. 選購確認明細彈窗（完整四行明細） -->
+  <!-- 3. 選購確認明細彈窗（僅顯示特價金額與物流運費兩行） -->
   <div id="confirm-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative">
       <h3 class="text-xl font-bold text-gray-900 mb-6">選購確認明細</h3>
       
       <div class="space-y-3 text-base">
         <div class="flex justify-between text-gray-600">
-          <span>商品原價</span>
-          <span class="font-medium text-gray-900">NT$ 1,590</span>
-        </div>
-        <div class="flex justify-between text-red-600 font-medium">
-          <span>88折專屬折抵</span>
-          <span>- NT$ 191</span>
+          <span>特價金額</span>
+          <span class="font-medium text-gray-900">NT$ 1,399</span>
         </div>
         <div class="flex justify-between text-gray-600">
           <span>物流運費</span>
@@ -115,7 +111,7 @@
       </div>
 
       <div class="border-t border-gray-100 my-5 pt-4 flex justify-between items-baseline">
-        <span class="text-lg font-bold text-gray-900">商品總收費</span>
+        <span class="text-lg font-bold text-gray-900">應付總計</span>
         <span class="text-3xl font-extrabold text-red-600">NT$ 1,489</span>
       </div>
 
