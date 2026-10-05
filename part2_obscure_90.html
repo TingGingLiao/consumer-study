@@ -7,13 +7,13 @@
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col justify-between">
 
-  <!-- 頂部學術免責通告列：Part 2 暗示折扣專屬經典大學藍 (z-[60] 永不被遮蔽) -->
+   <!-- 頂部學術免責通告列：Part 2 暗示折扣專屬經典大學藍 (z-[60] 永不被遮蔽) -->
   <div class="relative z-[60] bg-blue-700 text-white text-xs md:text-sm font-semibold py-2.5 px-4 text-center shadow-md flex items-center justify-center gap-2">
     <span>📋</span>
     <span>【學術研究聲明】本情境僅供學術問卷評估使用，全程不會產生任何實質金錢扣款或交易行為。</span>
   </div>
 
-  <!-- 1. 進場促銷活動廣告彈窗 (暗示折扣 品牌特惠日) -->
+  <!-- 1. 進場促銷活動廣告彈窗 (暗示折扣) -->
   <div id="promo-modal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative text-center border-t-8 border-blue-600">
       <button type="button" onclick="closePromoModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold p-1">✕</button>
@@ -30,17 +30,17 @@
     </div>
   </div>
 
-  <!-- 頁首導覽列 -->
+  <!-- 頁首導覽 -->
   <header class="bg-white border-b h-14 flex items-center px-4 max-w-5xl mx-auto w-full justify-between">
     <span class="text-xl font-bold text-blue-600">SMART TECH</span>
     <span class="text-xs text-gray-400">官方線上旗艦館</span>
   </header>
 
-  <!-- 2. 商品主內容展示區 -->
+  <!-- 2. 主商品展示區 -->
   <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 grid md:grid-cols-2 gap-8 items-start">
       
-      <!-- 圖片展示區 (三張縮圖點擊切換) -->
+      <!-- 圖片展示區 -->
       <div>
         <div class="aspect-square bg-white rounded-xl overflow-hidden mb-3 border flex items-center justify-center p-2">
           <img id="main-product-img" src="power1.webp" class="object-contain w-full h-full transition duration-200">
@@ -61,17 +61,21 @@
       <!-- 商品資訊區 -->
       <div class="flex flex-col justify-between">
         <div>
+          <!-- 上方標籤：品牌特惠日（主題藍色） -->
           <div class="mb-2">
             <span class="bg-blue-50 text-blue-600 text-xs px-2.5 py-1 rounded font-semibold border border-blue-200">品牌特惠日</span>
           </div>
+          
           <h1 class="text-2xl font-bold text-gray-900 mb-3 leading-snug">PHILIPS 飛利浦10000mAh多合一螢幕顯示行動電源(磁吸/自帶雙線/無線/37Wh_具Wh標示)</h1>
+          
           <ul class="text-sm text-gray-700 space-y-1.5 mb-5 list-disc list-inside">
             <li>2種自帶線+雙口輸出+磁吸無線充電，可支援五台設備同時充電</li>
-            <li>雙系統適用-通過Qi技術認證及相容MagSafe，iOS & Android雙系統適用</li>
+            <li>雙系統適用-通過Qi技術認證及相容MagSafe，iOS & Android雙系統適用，滿足各式手機需求</li>
             <li>極速充電-提升充電效能25%，同時享有雙向快充功能，22.5W最高輸出</li>
             <li>隱藏式手機支架，輕鬆追劇不礙事</li>
           </ul>
           
+          <!-- 價格區：售價 1,399 + 藍色「促銷優惠中」 -->
           <div class="bg-gray-50 p-4 rounded-xl mb-4 border">
             <div class="flex items-center space-x-3">
               <span class="text-3xl font-extrabold text-gray-900">NT$ 1,399</span>
@@ -93,19 +97,16 @@
     </div>
   </main>
 
-  <!-- 3. 選購確認明細彈窗（完整四行明細，暗示組：總收費深灰色） -->
+  <!-- 選購確認明細彈窗 -->
   <div id="confirm-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative">
       <h3 class="text-xl font-bold text-gray-900 mb-6">選購確認明細</h3>
       
       <div class="space-y-3 text-base">
+        <!-- 僅顯示特價金額與物流運費 -->
         <div class="flex justify-between text-gray-600">
-          <span>商品原價</span>
-          <span class="font-medium text-gray-900">NT$ 1,590</span>
-        </div>
-        <div class="flex justify-between text-red-600 font-medium">
-          <span>優惠折抵</span>
-          <span>- NT$ 191</span>
+          <span>特價金額</span>
+          <span class="font-medium text-gray-900">NT$ 1,399</span>
         </div>
         <div class="flex justify-between text-gray-600">
           <span>物流運費</span>
@@ -114,14 +115,16 @@
       </div>
 
       <div class="border-t border-gray-100 my-5 pt-4 flex justify-between items-baseline">
-        <span class="text-lg font-bold text-gray-900">商品總收費</span>
+        <span class="text-lg font-bold text-gray-900">應付總計</span>
         <span class="text-3xl font-extrabold text-gray-900">NT$ 1,489</span>
       </div>
 
+      <!-- 藍色學術免責聲明提示框 -->
       <div class="bg-blue-50 border border-blue-100 rounded-xl p-3.5 mb-6 text-xs leading-relaxed text-blue-700">
         本情境僅供學術研究評估使用，不會產生任何實質金錢扣款或交易行為。請點擊下方按鈕返回問卷繼續作答。
       </div>
 
+      <!-- 綠色確認按鈕 -->
       <button id="modal-submit-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl text-base shadow-md transition">
         確認選購意向並返回問卷
       </button>
@@ -141,10 +144,12 @@
       });
     }
 
+    // 點擊前往結帳 -> 顯示彈窗
     document.getElementById('checkout-btn').addEventListener('click', () => {
       document.getElementById('confirm-modal').classList.remove('hidden');
     });
 
+    // 點擊返回問卷 -> 跳轉 SurveyCake
     document.getElementById('modal-submit-btn').addEventListener('click', () => {
       window.location.href = "https://www.surveycake.com/s/xywM0";
     });
