@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>問卷載入中...</title>
+  <style>
+    body { font-family: sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background-color: #f8fafc; color: #334155; }
+    .spinner { width: 36px; height: 36px; border: 4px solid #e2e8f0; border-top: 4px solid #3b82f6; border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 16px; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  </style>
+  <script>
+    (function() {
+      // 替換為類別 A 的 4 份問卷網址
+      const surveys = [
+        "https://www.surveycake.com/s/7mZK1",
+        "https://www.surveycake.com/s/OOkbX",
+        "https://www.surveycake.com/s/b6gn1",
+        "https://www.surveycake.com/s/4kmwB"
+      ];
+
+      const STORAGE_KEY = "assigned_survey_site_A";
+      let targetUrl = null;
+
+      try {
+        targetUrl = localStorage.getItem(STORAGE_KEY);
+        if (!targetUrl || !surveys.includes(targetUrl)) {
+          const randomIndex = Math.floor(Math.random() * surveys.length);
+          targetUrl = surveys[randomIndex];
+          localStorage.setItem(STORAGE_KEY, targetUrl);
+        }
+      } catch (e) {
+        const randomIndex = Math.floor(Math.random() * surveys.length);
+        targetUrl = surveys[randomIndex];
+      }
+
+      if (targetUrl) {
+        window.location.replace(targetUrl);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div class="spinner"></div>
+  <p>正在為您載入問卷，請稍候...</p>
+</body>
+</html>
