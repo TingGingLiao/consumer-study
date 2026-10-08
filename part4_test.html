@@ -21,7 +21,7 @@
         學術研究情境模擬指引
       </div>
       
-      <!-- 說明文案區塊 (潤飾後更為親切自然) -->
+      <!-- 說明文案區塊 (自然流暢版) -->
       <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-left text-xs md:text-sm text-gray-700 leading-relaxed mb-6 space-y-3.5">
         <p class="flex items-start gap-2.5">
           <span class="text-blue-600 font-bold">1.</span>
@@ -44,14 +44,10 @@
     </div>
   </div>
 
-  <!-- ==================== 1. 頂部常駐學術聲明列 (z-[70]，改回指定原始文字) ==================== -->
-  <div class="relative z-[70] bg-slate-900 border-b border-slate-700 text-slate-100 text-xs md:text-sm py-2.5 px-4 shadow-md">
-    <div class="max-w-5xl mx-auto flex items-center justify-center gap-2">
-      <span class="text-base">📋</span>
-      <p class="leading-relaxed text-center font-medium">
-        【學術研究聲明】本情境僅供學術問卷評估使用，全程不會產生任何實質金錢扣款或交易行為。
-      </p>
-    </div>
+  <!-- ==================== 1. 頂部常駐學術聲明列 (完全對齊圖片原始樣式與文字) ==================== -->
+  <div class="relative z-[70] bg-[#1a1a1a] text-white text-xs md:text-sm py-2 px-4 shadow-md flex items-center justify-center gap-2">
+    <span>📋</span>
+    <span class="font-normal tracking-wide">【學術研究聲明】本情境僅供學術問卷評估使用，全程不會產生任何實質金錢扣款或交易行為。</span>
   </div>
 
   <!-- ==================== 2. 進場行銷促銷彈窗 (z-50) ==================== -->
@@ -108,10 +104,10 @@
             <img src="philips_1.webp" class="object-contain w-full h-full">
           </button>
           <button type="button" id="thumb-2" class="thumb-btn w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer">
-            <img src="philips_1.webp" class="object-contain w-full h-full">
+            <img src="philips_2.webp" class="object-contain w-full h-full">
           </button>
           <button type="button" id="thumb-3" class="thumb-btn w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer">
-            <img src="philips_1.webp" class="object-contain w-full h-full">
+            <img src="philips_3.webp" class="object-contain w-full h-full">
           </button>
         </div>
       </div>
@@ -136,20 +132,20 @@
           <!-- 價格區：同時呈現特價與建議售價 -->
           <div class="bg-amber-50/50 p-4 rounded-xl mb-4 border border-amber-200">
             <div class="flex items-baseline space-x-3">
-              <span class="text-3xl font-extrabold text-red-600">NT\$ 1,399</span>
-              <span class="text-sm text-gray-400 line-through">建議售價 NT\$ 1,590</span>
+              <span class="text-3xl font-extrabold text-red-600">NT$ 1,399</span>
+              <span class="text-sm text-gray-400 line-through">建議售價 NT$ 1,590</span>
             </div>
-            <p class="text-xs text-amber-700 mt-1.5 font-bold">⚡ 快閃促銷：今日下單現省 NT\$ 191，活動結束即恢復原價</p>
+            <p class="text-xs text-amber-700 mt-1.5 font-bold">⚡ 快閃促銷：今日下單現省 NT$ 191，活動結束即恢復原價</p>
           </div>
 
           <div class="border-t border-b py-3 text-sm flex justify-between">
             <span class="text-gray-500">物流運費</span>
-            <span class="font-bold text-gray-800">標準物流運費 NT\$ 90</span>
+            <span class="font-bold text-gray-800">標準物流運費 NT$ 90</span>
           </div>
         </div>
 
         <button id="checkout-btn" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3.5 rounded-xl shadow-lg mt-6 transition cursor-pointer">
-          立即搶購並前往結帳 (應付金額 NT\$ 1,489)
+          立即搶購並前往結帳 (應付金額 NT$ 1,489)
         </button>
       </div>
 
@@ -165,20 +161,118 @@
         <!-- 1. 商品原價 -->
         <div class="flex justify-between text-gray-600">
           <span>商品原價</span>
-          <span class="font-medium text-gray-900">NT\$ 1,590</span>
+          <span class="font-medium text-gray-900">NT$ 1,590</span>
         </div>
         <!-- 2. 折扣金額 -->
         <div class="flex justify-between text-red-600 font-medium">
           <span>折扣金額</span>
-          <span>- NT\$ 191</span>
+          <span>- NT$ 191</span>
         </div>
         <!-- 3. 物流運費 -->
         <div class="flex justify-between text-gray-600">
           <span>物流運費</span>
-          <span class="font-medium text-gray-900">+ NT\$ 90</span>
+          <span class="font-medium text-gray-900">+ NT$ 90</span>
         </div>
       </div>
 
       <!-- 4. 商品總收費 -->
       <div class="border-t border-gray-100 my-5 pt-4 flex justify-between items-baseline">
-        <span class="text-
+        <span class="text-lg font-bold text-gray-900">商品總收費</span>
+        <span class="text-3xl font-extrabold text-red-600">NT$ 1,489</span>
+      </div>
+
+      <!-- 學術免責提示框 -->
+      <div class="bg-blue-50 border border-blue-100 rounded-xl p-3.5 mb-6 text-xs leading-relaxed text-blue-700">
+        本情境僅供學術研究評估使用，不會產生任何實質金錢扣款或交易行為。請點擊下方按鈕返回問卷繼續作答。
+      </div>
+
+      <!-- 確認按鈕 -->
+      <button id="modal-submit-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl text-base shadow-md transition cursor-pointer">
+        確認選購意向並返回問卷
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // 1. 進入網站：保證點擊立刻解除遮罩
+    const enterBtn = document.getElementById('enter-site-btn');
+    const overlay = document.getElementById('instruction-overlay');
+    if (enterBtn && overlay) {
+      enterBtn.addEventListener('click', () => {
+        overlay.style.pointerEvents = 'none';
+        overlay.style.display = 'none';
+      });
+    }
+
+    // 2. 關閉行銷快閃彈窗
+    const promoModal = document.getElementById('promo-modal');
+    const closePromoX = document.getElementById('close-promo-x');
+    const closePromoBtn = document.getElementById('close-promo-btn');
+    
+    function hidePromo() {
+      if (promoModal) {
+        promoModal.style.pointerEvents = 'none';
+        promoModal.style.display = 'none';
+      }
+    }
+    if (closePromoX) closePromoX.addEventListener('click', hidePromo);
+    if (closePromoBtn) closePromoBtn.addEventListener('click', hidePromo);
+
+    // 3. 縮圖切換功能
+    function switchImage(src, activeId) {
+      document.getElementById('main-product-img').src = src;
+      ['thumb-1', 'thumb-2', 'thumb-3'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.className = 'thumb-btn w-16 h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer ' + (activeId === id ? 'border-amber-500' : 'border-gray-200');
+        }
+      });
+    }
+    document.getElementById('thumb-1').addEventListener('click', () => switchImage('philips_1.webp', 'thumb-1'));
+    document.getElementById('thumb-2').addEventListener('click', () => switchImage('philips_1.webp', 'thumb-2'));
+    document.getElementById('thumb-3').addEventListener('click', () => switchImage('philips_3.webp', 'thumb-3'));
+
+    // 4. 結帳彈窗控制
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const confirmModal = document.getElementById('confirm-modal');
+    if (checkoutBtn && confirmModal) {
+      checkoutBtn.addEventListener('click', () => {
+        confirmModal.classList.remove('hidden');
+      });
+    }
+
+    const modalSubmitBtn = document.getElementById('modal-submit-btn');
+    if (modalSubmitBtn) {
+      modalSubmitBtn.addEventListener('click', () => {
+        window.location.href = "https://www.surveycake.com/s/OOkbX";
+      });
+    }
+
+    // 5. 動態倒數計時功能（每日 24:00 自動循環）
+    function updateMidnightCountdown() {
+      const now = new Date();
+      const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+      
+      let diff = Math.floor((midnight - now) / 1000);
+      if (diff < 0) diff = 24 * 3600 - 1;
+
+      const hrs = Math.floor(diff / 3600);
+      const mins = Math.floor((diff % 3600) / 60);
+      const secs = diff % 60;
+
+      const elH = document.getElementById('cd-hours');
+      const elM = document.getElementById('cd-minutes');
+      const elS = document.getElementById('cd-seconds');
+
+      if (elH && elM && elS) {
+        elH.textContent = String(hrs).padStart(2, '0');
+        elM.textContent = String(mins).padStart(2, '0');
+        elS.textContent = String(secs).padStart(2, '0');
+      }
+    }
+
+    updateMidnightCountdown();
+    setInterval(updateMidnightCountdown, 1000);
+  </script>
+</body>
+</html>
