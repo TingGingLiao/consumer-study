@@ -4,10 +4,56 @@
   <meta charset="UTF-8">
   <title>商品選購評估</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* 進場平滑淡出動畫 */
+    .fade-out {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease-out;
+    }
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col justify-between">
 
-  <!-- ==================== 頂部系統提示通告列 (最高層級 z-[70]，永不被遮蔽) ==================== -->
+  <!-- ==================== 0. 最前置系統指導語遮罩 (最高層級 z-[100]，進站前強制閱讀) ==================== -->
+  <div id="instruction-overlay" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-[100] flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 md:p-8 shadow-2xl border border-slate-200 text-center relative animate-in fade-in zoom-in duration-300">
+      
+      <!-- 系統圖示 -->
+      <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl shadow-inner border border-blue-100">
+        📋
+      </div>
+
+      <div class="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full font-bold tracking-wider mb-2">
+        學術研究情境模擬指引
+      </div>
+      
+      <h2 class="text-xl md:text-2xl font-black text-gray-900 mb-4">歡迎參與商品選購評估</h2>
+      
+      <!-- 說明文案區塊 -->
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-left text-xs md:text-sm text-gray-700 leading-relaxed mb-6 space-y-2.5">
+        <p class="flex items-start gap-2">
+          <span class="text-blue-600 font-bold">1.</span>
+          <span><strong>情境模擬說明：</strong>本網站僅供學術問卷情境測量設計，全程<strong>無任何實質金錢扣款或交易行為</strong>。</span>
+        </p>
+        <p class="flex items-start gap-2">
+          <span class="text-blue-600 font-bold">2.</span>
+          <span><strong>瀏覽方式：</strong>請依平常真實的網路購物習慣，自在瀏覽網站內的商品資訊、促銷活動與價格。</span>
+        </p>
+        <p class="flex items-start gap-2">
+          <span class="text-blue-600 font-bold">3.</span>
+          <span><strong>填答指引：</strong>觀看完網站內容後，請依頁面按鈕指示前往問卷填寫相關評估問題。</span>
+        </p>
+      </div>
+
+      <!-- 確認進入按鈕 -->
+      <button type="button" onclick="enterExperimentSite()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl text-base shadow-lg transition active:scale-[0.99]">
+        我已理解說明，進入網站
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== 1. 保留頂部系統提示通告列 (次高層級 z-[70]，進入後常駐) ==================== -->
   <div class="relative z-[70] bg-slate-900 border-b border-slate-700 text-slate-100 text-xs md:text-sm py-2.5 px-4 shadow-md">
     <div class="max-w-5xl mx-auto flex items-center justify-center gap-2">
       <span class="inline-flex items-center justify-center bg-blue-500/20 text-blue-300 text-xs px-2 py-0.5 rounded font-mono font-bold border border-blue-400/30">
@@ -15,12 +61,12 @@
       </span>
       <p class="leading-relaxed text-center">
         <strong class="text-amber-300 font-semibold">【系統提示｜學術研究說明】</strong>
-        本網站為學術實驗模擬環境，全站無任何實質交易與扣款行為。請依平常習慣瀏覽網頁，瀏覽完畢後請依頁面指示點選按鈕，返回問卷完成填答。
+        本網站為學術實驗模擬環境，全站無實質交易與扣款。請依習慣瀏覽，瀏覽完畢後依指示點選按鈕返回問卷。
       </p>
     </div>
   </div>
 
-  <!-- 1. 進場彈窗：突發性限時快閃（內建動態跳動倒數計時器，z-50） -->
+  <!-- ==================== 2. 進場行銷促銷彈窗 (z-50，受試者點擊進入後才展示) ==================== -->
   <div id="promo-modal" class="fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative text-center border-t-8 border-amber-500">
       <button type="button" onclick="closePromoModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold p-1">✕</button>
@@ -32,7 +78,7 @@
       <span class="bg-red-600 text-white text-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">今日特惠倒數中</span>
       <h2 class="text-2xl font-black text-gray-900 mt-2 mb-2">⚡ 突發快閃・僅限今日特惠</h2>
       
-      <!-- 動態倒數計時框：即時顯示距午夜 0 時剩餘時間 -->
+      <!-- 動態倒數計時框：顯示距當天午夜 24:00 -->
       <div class="bg-amber-50 border border-amber-200 rounded-2xl p-3.5 my-4">
         <p class="text-xs text-amber-800 font-bold mb-2">距今日特惠結束（今晚 24:00）僅剩：</p>
         <div class="flex justify-center items-center gap-2 text-white font-mono font-black text-xl">
@@ -57,162 +103,4 @@
   <!-- 頂部導覽列 -->
   <header class="bg-white border-b h-14 flex items-center px-4 max-w-5xl mx-auto w-full justify-between">
     <span class="text-xl font-bold text-blue-600">SMART TECH</span>
-    <span class="text-xs text-gray-400">官方線上旗艦館</span>
-  </header>
-
-  <!-- 2. 商品主內容區 -->
-  <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 grid md:grid-cols-2 gap-8 items-start">
-      
-      <!-- 圖片展示區 (3張切換) -->
-      <div>
-        <div class="aspect-square bg-white rounded-xl overflow-hidden mb-3 border flex items-center justify-center p-2">
-          <img id="main-product-img" src="philips_1.webp" class="object-contain w-full h-full transition duration-200">
-        </div>
-        <div class="flex gap-3">
-          <button type="button" id="thumb-1" onclick="switchImage('philips_1.webp', 'thumb-1')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-amber-500 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
-            <img src="philips_1.webp" class="object-contain w-full h-full">
-          </button>
-          <button type="button" id="thumb-2" onclick="switchImage('philips_2.webp', 'thumb-2')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
-            <img src="philips_2.webp" class="object-contain w-full h-full">
-          </button>
-          <button type="button" id="thumb-3" onclick="switchImage('philips_3.webp', 'thumb-3')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
-            <img src="philips_3.webp" class="object-contain w-full h-full">
-          </button>
-        </div>
-      </div>
-
-      <!-- 商品資訊區 -->
-      <div class="flex flex-col justify-between">
-        <div>
-          <div class="flex items-center gap-2 mb-2">
-            <span class="bg-amber-500 text-white text-xs px-2.5 py-1 rounded font-bold">⚡ 今日快閃限定</span>
-            <span class="bg-red-50 text-red-600 text-xs px-2 py-0.5 rounded font-semibold border border-red-200">限時專案價</span>
-          </div>
-          
-          <h1 class="text-2xl font-bold text-gray-900 mb-3 leading-snug">PHILIPS 飛利浦10000mAh多合一螢幕顯示行動電源(磁吸/自帶雙線/無線/37Wh_具Wh標示)</h1>
-          
-          <ul class="text-sm text-gray-700 space-y-1.5 mb-5 list-disc list-inside">
-            <li>2種自帶線+雙口輸出+磁吸無線充電，可支援五台設備同時充電</li>
-            <li>雙系統適用-通過Qi技術認證及相容MagSafe，iOS & Android雙系統適用，滿足各式手機需求</li>
-            <li>極速充電-提升充電效能25%，同時享有雙向快充功能，22.5W最高輸出</li>
-            <li>隱藏式手機支架，輕鬆追劇不礙事</li>
-          </ul>
-          
-          <!-- 價格區：同時呈現特價與建議售價劃線 -->
-          <div class="bg-amber-50/50 p-4 rounded-xl mb-4 border border-amber-200">
-            <div class="flex items-baseline space-x-3">
-              <span class="text-3xl font-extrabold text-red-600">NT$ 1,399</span>
-              <span class="text-sm text-gray-400 line-through">建議售價 NT$ 1,590</span>
-            </div>
-            <p class="text-xs text-amber-700 mt-1.5 font-bold">⚡ 快閃促銷：今日下單現省 NT$ 191，活動結束即恢復原價</p>
-          </div>
-
-          <div class="border-t border-b py-3 text-sm flex justify-between">
-            <span class="text-gray-500">物流運費</span>
-            <span class="font-bold text-gray-800">標準物流運費 NT$ 90</span>
-          </div>
-        </div>
-
-        <button id="checkout-btn" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3.5 rounded-xl shadow-lg mt-6 transition">
-          立即搶購並前往結帳 (應付金額 NT$ 1,489)
-        </button>
-      </div>
-
-    </div>
-  </main>
-
-  <!-- 3. 選購確認明細彈窗（完整四行明細） -->
-  <div id="confirm-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative">
-      <h3 class="text-xl font-bold text-gray-900 mb-6">選購確認明細</h3>
-      
-      <div class="space-y-3 text-base">
-        <!-- 1. 商品原價 -->
-        <div class="flex justify-between text-gray-600">
-          <span>商品原價</span>
-          <span class="font-medium text-gray-900">NT$ 1,590</span>
-        </div>
-        <!-- 2. 折扣金額 -->
-        <div class="flex justify-between text-red-600 font-medium">
-          <span>折扣金額</span>
-          <span>- NT$ 191</span>
-        </div>
-        <!-- 3. 物流運費 -->
-        <div class="flex justify-between text-gray-600">
-          <span>物流運費</span>
-          <span class="font-medium text-gray-900">+ NT$ 90</span>
-        </div>
-      </div>
-
-      <!-- 4. 商品總收費 -->
-      <div class="border-t border-gray-100 my-5 pt-4 flex justify-between items-baseline">
-        <span class="text-lg font-bold text-gray-900">商品總收費</span>
-        <span class="text-3xl font-extrabold text-red-600">NT$ 1,489</span>
-      </div>
-
-      <!-- 學術免責提示框 -->
-      <div class="bg-blue-50 border border-blue-100 rounded-xl p-3.5 mb-6 text-xs leading-relaxed text-blue-700">
-        本情境僅供學術研究評估使用，不會產生任何實質金錢扣款或交易行為。請點擊下方按鈕返回問卷繼續作答。
-      </div>
-
-      <!-- 確認按鈕 -->
-      <button id="modal-submit-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl text-base shadow-md transition">
-        確認選購意向並返回問卷
-      </button>
-    </div>
-  </div>
-
-  <script>
-    function closePromoModal() {
-      document.getElementById('promo-modal').classList.add('hidden');
-    }
-
-    function switchImage(src, activeId) {
-      document.getElementById('main-product-img').src = src;
-      ['thumb-1', 'thumb-2', 'thumb-3'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.className = 'w-16 h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white ' + (activeId === id ? 'border-amber-500' : 'border-gray-200');
-        }
-      });
-    }
-
-    document.getElementById('checkout-btn').addEventListener('click', () => {
-      document.getElementById('confirm-modal').classList.remove('hidden');
-    });
-
-    document.getElementById('modal-submit-btn').addEventListener('click', () => {
-      window.location.href = "https://www.surveycake.com/s/OOkbX";
-    });
-
-    // 動態倒數計時功能：精準計算至今日午夜 23:59:59，跨日自動重置
-    function updateMidnightCountdown() {
-      const now = new Date();
-      const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
-      
-      let diff = Math.floor((midnight - now) / 1000);
-      if (diff < 0) {
-        diff = 24 * 3600 - 1;
-      }
-
-      const hrs = Math.floor(diff / 3600);
-      const mins = Math.floor((diff % 3600) / 60);
-      const secs = diff % 60;
-
-      const elH = document.getElementById('cd-hours');
-      const elM = document.getElementById('cd-minutes');
-      const elS = document.getElementById('cd-seconds');
-
-      if (elH && elM && elS) {
-        elH.textContent = String(hrs).padStart(2, '0');
-        elM.textContent = String(mins).padStart(2, '0');
-        elS.textContent = String(secs).padStart(2, '0');
-      }
-    }
-
-    updateMidnightCountdown();
-    setInterval(updateMidnightCountdown, 1000);
-  </script>
-</body>
-</html>
+    <span class="text-xs text-gray-400">官方線上旗
