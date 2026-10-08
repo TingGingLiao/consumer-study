@@ -7,58 +7,82 @@
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col justify-between">
 
-  <!-- 頂部學術免責通告列：Part 2 明示折扣專屬深海軍藍 (z-[60] 永不被遮蔽) -->
-  <div class="relative z-[60] bg-blue-950 text-blue-100 text-xs md:text-sm font-semibold py-2.5 px-4 text-center shadow-md flex items-center justify-center gap-2">
-    <span>📋</span>
-    <span>【學術研究聲明】本情境僅供學術問卷評估使用，全程不會產生任何實質金錢扣款或交易行為。</span>
+  <div id="instruction-overlay" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-[100] flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 md:p-8 shadow-2xl border border-slate-200 text-center relative">
+      <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl shadow-inner border border-blue-100">
+        📋
+      </div>
+      <div class="inline-block bg-blue-100 text-blue-800 text-sm md:text-base px-4 py-1.5 rounded-full font-bold tracking-wider mb-6">
+        學術研究情境模擬指引
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-left text-xs md:text-sm text-gray-700 leading-relaxed mb-6 space-y-3.5">
+        <p class="flex items-start gap-2.5">
+          <span class="text-blue-600 font-bold">1.</span>
+          <span><strong>情境模擬說明：</strong>本網站僅供學術問卷情境測量設計，全程<strong>無任何實質金錢扣款或交易行為</strong>。</span>
+        </p>
+        <p class="flex items-start gap-2.5">
+          <span class="text-blue-600 font-bold">2.</span>
+          <span><strong>瀏覽方式：</strong>請依照您平時的網購習慣，放鬆瀏覽頁面中的商品規格、促銷活動與價格方案即可。</span>
+        </p>
+        <p class="flex items-start gap-2.5">
+          <span class="text-blue-600 font-bold">3.</span>
+          <span><strong>填答指引：</strong>瀏覽完畢後，請依循頁面按鈕指引前往問卷，繼續完成後續評估填答。</span>
+        </p>
+      </div>
+      <button type="button" id="enter-site-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl text-base shadow-lg transition active:scale-[0.99] cursor-pointer">
+        我已理解說明，進入網站
+      </button>
+    </div>
   </div>
 
-  <!-- 1. 進場促銷活動廣告彈窗 (明示折扣 88 折) -->
+  <div class="relative z-[70] bg-[#2b1114] border-b border-red-900/60 text-slate-100 text-xs md:text-sm py-2.5 px-4 shadow-md flex items-center justify-center gap-2 text-center">
+    <span>📋</span>
+    <p class="leading-relaxed font-normal tracking-wide">
+      <span class="text-amber-300 font-bold">【學術研究聲明】</span>本情境僅供學術問卷評估使用，全程不會產生任何實質金錢扣款或交易行為。
+    </p>
+  </div>
+
   <div id="promo-modal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative text-center border-t-8 border-red-600">
-      <button type="button" onclick="closePromoModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold p-1">✕</button>
+      <button type="button" id="close-promo-x" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold p-1 cursor-pointer">✕</button>
       <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold shadow-inner">
         88折
       </div>
       <h2 class="text-2xl font-black text-gray-900 mb-2">🎉 限時專屬・全館 88 折優惠</h2>
       <p class="text-sm text-gray-600 mb-6 leading-relaxed">
-        恭喜獲得專屬折扣資格！本檔熱銷商品結帳直接享 <strong class="text-red-600 font-bold">88 折優惠</strong>，立即前往選購！
+        恭喜獲得專屬折扣資格！熱銷商品結帳直接享 <strong class="text-red-600 font-bold">88 折優惠</strong>，立即前往選購！
       </p>
-      <button type="button" onclick="closePromoModal()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition">
-        立即領取 88 折選購
+      <button type="button" id="close-promo-btn" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition cursor-pointer">
+        立即領取 88 折選購(下一頁)
       </button>
     </div>
   </div>
 
-  <!-- 頁首導覽列 -->
   <header class="bg-white border-b h-14 flex items-center px-4 max-w-5xl mx-auto w-full justify-between">
     <span class="text-xl font-bold text-blue-600">SMART TECH</span>
     <span class="text-xs text-gray-400">官方線上旗艦館</span>
   </header>
 
-  <!-- 2. 商品主內容展示區 -->
   <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 grid md:grid-cols-2 gap-8 items-start">
       
-      <!-- 圖片展示區 (三張縮圖點擊切換) -->
       <div>
         <div class="aspect-square bg-white rounded-xl overflow-hidden mb-3 border flex items-center justify-center p-2">
-          <img id="main-product-img" src="power1.webp" class="object-contain w-full h-full transition duration-200">
+          <img id="main-product-img" src="philips_1.webp" class="object-contain w-full h-full transition duration-200">
         </div>
         <div class="flex gap-3">
-          <button type="button" id="thumb-1" onclick="switchImage('power1.webp', 'thumb-1')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-red-500 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
+          <button type="button" id="thumb-1" class="thumb-btn w-16 h-16 rounded-lg overflow-hidden border-2 border-red-500 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer">
             <img src="power1.webp" class="object-contain w-full h-full">
           </button>
-          <button type="button" id="thumb-2" onclick="switchImage('power2.webp', 'thumb-2')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
+          <button type="button" id="thumb-2" class="thumb-btn w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer">
             <img src="power2.webp" class="object-contain w-full h-full">
           </button>
-          <button type="button" id="thumb-3" onclick="switchImage('power3.webp', 'thumb-3')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
+          <button type="button" id="thumb-3" class="thumb-btn w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer">
             <img src="power3.webp" class="object-contain w-full h-full">
           </button>
         </div>
       </div>
 
-      <!-- 商品資訊區 -->
       <div class="flex flex-col justify-between">
         <div>
           <div class="mb-2">
@@ -71,12 +95,11 @@
             <li>極速充電-提升充電效能25%，同時享有雙向快充功能，22.5W最高輸出</li>
             <li>隱藏式手機支架，輕鬆追劇不礙事</li>
           </ul>
-          
-          <!-- 價格區：純顯示折後特價，右側改為紅色「熱銷中」標籤 -->
+
           <div class="bg-gray-50 p-4 rounded-xl mb-4 border">
             <div class="flex items-center space-x-3">
               <span class="text-3xl font-extrabold text-gray-900">NT$ 1,399</span>
-              <span class="text-xs font-bold text-red-600 bg-red-50 border border-red-200 px-2 py-0.5 rounded">熱銷中</span>
+              <span class="text-xs font-semibold text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded">促銷優惠中</span>
             </div>
           </div>
 
@@ -86,18 +109,17 @@
           </div>
         </div>
 
-        <button id="checkout-btn" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl shadow-lg mt-6 transition">
-          確認選購並前往結帳 (應付金額 NT$ 1,444)
+        <button id="checkout-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg mt-6 transition cursor-pointer">
+          下一頁
         </button>
       </div>
 
     </div>
   </main>
 
-  <!-- 3. 選購確認明細彈窗（僅顯示特價金額與物流運費兩行） -->
   <div id="confirm-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative">
-      <h3 class="text-xl font-bold text-gray-900 mb-6">選購確認明細</h3>
+      <h3 class="text-xl font-bold text-gray-900 mb-6">費用明細</h3>
       
       <div class="space-y-3 text-base">
         <div class="flex justify-between text-gray-600">
@@ -112,31 +134,50 @@
 
       <div class="border-t border-gray-100 my-5 pt-4 flex justify-between items-baseline">
         <span class="text-lg font-bold text-gray-900">應付總計</span>
-        <span class="text-3xl font-extrabold text-red-600">NT$ 1,444</span>
+        <span class="text-3xl font-extrabold text-gray-900">NT$ 1,444</span>
       </div>
 
       <div class="bg-blue-50 border border-blue-100 rounded-xl p-3.5 mb-6 text-xs leading-relaxed text-blue-700">
         本情境僅供學術研究評估使用，不會產生任何實質金錢扣款或交易行為。請點擊下方按鈕返回問卷繼續作答。
       </div>
 
-      <button id="modal-submit-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl text-base shadow-md transition">
-        確認選購意向並返回問卷
+      <button id="modal-submit-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl text-base shadow-md transition cursor-pointer">
+        下一頁(前往問卷)
       </button>
     </div>
   </div>
 
   <script>
-    function closePromoModal() {
-      document.getElementById('promo-modal').classList.add('hidden');
-    }
-
-    function switchImage(src, activeId) {
-      document.getElementById('main-product-img').src = src;
-      ['thumb-1', 'thumb-2', 'thumb-3'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.className = 'w-16 h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white ' + (activeId === id ? 'border-red-500' : 'border-gray-200');
+    const enterBtn = document.getElementById('enter-site-btn');
+    const overlay = document.getElementById('instruction-overlay');
+    if (enterBtn && overlay) {
+      enterBtn.addEventListener('click', function() {
+        overlay.style.pointerEvents = 'none';
+        overlay.style.display = 'none';
       });
     }
+
+    const promoModal = document.getElementById('promo-modal');
+    function closePromo() {
+      if (promoModal) {
+        promoModal.style.pointerEvents = 'none';
+        promoModal.style.display = 'none';
+      }
+    }
+    document.getElementById('close-promo-x').addEventListener('click', closePromo);
+    document.getElementById('close-promo-btn').addEventListener('click', closePromo);
+
+    function switchImage(src, activeId) {
+      const mainImg = document.getElementById('main-product-img');
+      if (mainImg) mainImg.src = src;
+      ['thumb-1', 'thumb-2', 'thumb-3'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.className = 'thumb-btn w-16 h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer ' + (activeId === id ? 'border-red-500' : 'border-gray-200');
+      });
+    }
+    document.getElementById('thumb-1').addEventListener('click', () => switchImage('power1.webp', 'thumb-1'));
+    document.getElementById('thumb-2').addEventListener('click', () => switchImage('power2.webp', 'thumb-2'));
+    document.getElementById('thumb-3').addEventListener('click', () => switchImage('power3.webp', 'thumb-3'));
 
     document.getElementById('checkout-btn').addEventListener('click', () => {
       document.getElementById('confirm-modal').classList.remove('hidden');
