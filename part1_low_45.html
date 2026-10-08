@@ -7,10 +7,41 @@
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col justify-between">
 
-  <!-- 頂部學術免責通告列：Part 1 低單價專屬冷灰藍色系 (z-[60] 永不被遮蔽) -->
-  <div class="relative z-[60] bg-slate-600 text-white text-xs md:text-sm font-semibold py-2.5 px-4 text-center shadow-md flex items-center justify-center gap-2">
+  <!-- ==================== 0. 最前置系統指導語遮罩 (z-[100]) ==================== -->
+  <div id="instruction-overlay" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-[100] flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 md:p-8 shadow-2xl border border-slate-200 text-center relative">
+      <div class="w-16 h-16 bg-sky-50 text-sky-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl shadow-inner border border-sky-100">
+        📋
+      </div>
+      <div class="inline-block bg-sky-100 text-sky-800 text-sm md:text-base px-4 py-1.5 rounded-full font-bold tracking-wider mb-6">
+        學術研究情境模擬指引
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-left text-xs md:text-sm text-gray-700 leading-relaxed mb-6 space-y-3.5">
+        <p class="flex items-start gap-2.5">
+          <span class="text-sky-600 font-bold">1.</span>
+          <span><strong>情境模擬說明：</strong>本網站僅供學術問卷情境測量設計，全程<strong>無任何實質金錢扣款或交易行為</strong>。</span>
+        </p>
+        <p class="flex items-start gap-2.5">
+          <span class="text-sky-600 font-bold">2.</span>
+          <span><strong>瀏覽方式：</strong>請依照您平時的網購習慣，放鬆瀏覽頁面中的商品規格、促銷活動與價格方案即可。</span>
+        </p>
+        <p class="flex items-start gap-2.5">
+          <span class="text-sky-600 font-bold">3.</span>
+          <span><strong>填答指引：</strong>瀏覽完畢後，請依循頁面按鈕指引前往問卷，繼續完成後續評估填答。</span>
+        </p>
+      </div>
+      <button type="button" id="enter-site-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl text-base shadow-lg transition active:scale-[0.99] cursor-pointer">
+        我已理解說明，進入網站
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== 1. 頂部常駐學術聲明列：低單價生活親和海軍青藍色系 (z-[70]) ==================== -->
+  <div class="relative z-[70] bg-sky-950 border-b border-sky-800 text-sky-50 text-xs md:text-sm py-2.5 px-4 shadow-md flex items-center justify-center gap-2 text-center">
     <span>📋</span>
-    <span>【學術研究聲明】本情境僅供學術問卷評估使用，全程不會產生任何實質金錢扣款或交易行為。</span>
+    <p class="leading-relaxed font-normal tracking-wide">
+      <span class="text-amber-300 font-bold">【學術研究聲明】</span>本情境僅供學術問卷評估使用，全程不會產生任何實質金錢扣款或交易行為。
+    </p>
   </div>
 
   <!-- 頁首導覽列 -->
@@ -19,23 +50,23 @@
     <span class="text-xs text-gray-400">官方線上旗艦館</span>
   </header>
 
-  <!-- 主商品展示區 -->
+  <!-- ==================== 2. 商品主內容區 ==================== -->
   <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 grid md:grid-cols-2 gap-8 items-start">
       
-      <!-- 圖片展示區 (含三張縮圖切換) -->
+      <!-- 圖片展示區 (3張切換) -->
       <div>
         <div class="aspect-square bg-white rounded-xl overflow-hidden mb-3 border flex items-center justify-center p-4">
           <img id="main-product-img" src="five flower.jfif" class="object-contain w-full h-full transition duration-200">
         </div>
         <div class="flex gap-3">
-          <button type="button" id="thumb-1" onclick="switchImage('five flower.jfif', 'thumb-1')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-blue-600 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
+          <button type="button" id="thumb-1" class="thumb-btn w-16 h-16 rounded-lg overflow-hidden border-2 border-blue-600 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer">
             <img src="five flower.jfif" class="object-contain w-full h-full">
           </button>
-          <button type="button" id="thumb-2" onclick="switchImage('five flower 2.webp', 'thumb-2')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
+          <button type="button" id="thumb-2" class="thumb-btn w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer">
             <img src="five flower 2.webp" class="object-contain w-full h-full">
           </button>
-          <button type="button" id="thumb-3" onclick="switchImage('five flower 3.webp', 'thumb-3')" class="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white">
+          <button type="button" id="thumb-3" class="thumb-btn w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer">
             <img src="five flower 3.webp" class="object-contain w-full h-full">
           </button>
         </div>
@@ -46,23 +77,23 @@
         <div>
           <div class="flex items-center gap-2 mb-2">
             <span class="bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded font-semibold">家庭日用</span>
-            <span class="bg-red-50 text-red-600 text-xs px-2.5 py-1 rounded font-bold border border-red-200">限時折抵 NT$ 100</span>
+            <span class="bg-red-50 text-red-600 text-xs px-2.5 py-1 rounded font-bold border border-red-200">特惠折抵 NT$ 100</span>
           </div>
 
           <h1 class="text-2xl font-bold text-gray-900 mb-3 leading-snug">五月花 新柔韌抽取式衛生紙 (100抽x24包/袋)</h1>
           <ul class="text-sm text-gray-700 space-y-1.5 mb-5 list-disc list-inside">
-            <li>柔軟又強韌</li>
-            <li>獨家柔織交織技術</li>
-            <li>柔韌版全新升級</li>
+            <li>觸感柔韌親膚，加倍升級不易破</li>
+            <li>採用 100% 原生紙漿，純淨安心</li>
+            <li>不添加螢光劑，呵護敏感肌膚</li>
+            <li>可溶於水中，安心丟入馬桶</li>
           </ul>
           
-          <!-- 價格區：呈現原價與折 100 後特價 -->
           <div class="bg-gray-50 p-4 rounded-xl mb-4 border">
             <div class="flex items-baseline space-x-3">
               <span class="text-3xl font-extrabold text-red-600">NT$ 299</span>
               <span class="text-sm text-gray-400 line-through">原價 NT$ 399</span>
             </div>
-            <p class="text-xs text-red-600 mt-1.5 font-bold">🎉 本檔優惠：結帳即享現折 NT$ 100 </p>
+            <p class="text-xs text-red-600 mt-1.5 font-bold">🎉 本檔優惠：結帳即享現折 NT$ 100 專屬折抵</p>
           </div>
 
           <div class="border-t border-b py-3 text-sm flex justify-between">
@@ -71,38 +102,34 @@
           </div>
         </div>
 
-        <button id="checkout-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg mt-6 transition">
-          確認選購並前往結帳
+        <button id="checkout-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg mt-6 transition cursor-pointer">
+          下一頁
         </button>
       </div>
 
     </div>
   </main>
 
-  <!-- 選購確認明細彈窗：四行完整明細（含折 100） -->
+  <!-- ==================== 3. 選購確認明細彈窗 ==================== -->
   <div id="confirm-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative">
-      <h3 class="text-xl font-bold text-gray-900 mb-6">選購確認明細</h3>
+      <h3 class="text-xl font-bold text-gray-900 mb-6">費用明細</h3>
       
       <div class="space-y-3 text-base">
-        <!-- 1. 商品原價 -->
         <div class="flex justify-between text-gray-600">
           <span>商品原價</span>
           <span class="font-medium text-gray-900">NT$ 399</span>
         </div>
-        <!-- 2. 折扣優惠 -->
         <div class="flex justify-between text-red-600 font-medium">
-          <span>優惠折抵</span>
+          <span>專案優惠折抵</span>
           <span>- NT$ 100</span>
         </div>
-        <!-- 3. 物流運費 -->
         <div class="flex justify-between text-gray-600">
           <span>物流運費</span>
           <span class="font-medium text-gray-900">+ NT$ 45</span>
         </div>
       </div>
 
-      <!-- 4. 商品總收費 -->
       <div class="border-t border-gray-100 my-5 pt-4 flex justify-between items-baseline">
         <span class="text-lg font-bold text-gray-900">商品總收費</span>
         <span class="text-3xl font-extrabold text-red-600">NT$ 344</span>
@@ -112,22 +139,35 @@
         本情境僅供學術研究評估使用，不會產生任何實質金錢扣款或交易行為。請點擊下方按鈕返回問卷繼續作答。
       </div>
 
-      <button id="modal-submit-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl text-base shadow-md transition">
-        確認選購意向並返回問卷
+      <button id="modal-submit-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl text-base shadow-md transition cursor-pointer">
+       下一頁(返回問卷)
       </button>
     </div>
   </div>
 
   <script>
+    const enterBtn = document.getElementById('enter-site-btn');
+    const overlay = document.getElementById('instruction-overlay');
+    if (enterBtn && overlay) {
+      enterBtn.addEventListener('click', function() {
+        overlay.style.pointerEvents = 'none';
+        overlay.style.display = 'none';
+      });
+    }
+
     function switchImage(src, activeId) {
-      document.getElementById('main-product-img').src = src;
+      const mainImg = document.getElementById('main-product-img');
+      if (mainImg) mainImg.src = src;
       ['thumb-1', 'thumb-2', 'thumb-3'].forEach(id => {
         const el = document.getElementById(id);
         if (el) {
-          el.className = 'w-16 h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white ' + (activeId === id ? 'border-blue-600' : 'border-gray-200');
+          el.className = 'thumb-btn w-16 h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer ' + (activeId === id ? 'border-blue-600' : 'border-gray-200');
         }
       });
     }
+    document.getElementById('thumb-1').addEventListener('click', () => switchImage('five flower.jfif', 'thumb-1'));
+    document.getElementById('thumb-2').addEventListener('click', () => switchImage('five flower 2.webp', 'thumb-2'));
+    document.getElementById('thumb-3').addEventListener('click', () => switchImage('five flower 3.webp', 'thumb-3'));
 
     document.getElementById('checkout-btn').addEventListener('click', () => {
       document.getElementById('confirm-modal').classList.remove('hidden');
@@ -137,5 +177,3 @@
       window.location.href = "https://www.surveycake.com/s/4kmwB";
     });
   </script>
-</body>
-</html>
