@@ -37,14 +37,14 @@
         </p>
       </div>
 
-      <!-- 確認進入按鈕：內聯 + 事件監聽雙重保障 -->
-      <button type="button" id="enter-site-btn" onclick="dismissOverlay()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl text-base shadow-lg transition active:scale-[0.99] cursor-pointer">
+      <!-- 確認進入按鈕：單純綁定 ID，不寫內聯 onclick 避免雙重衝突 -->
+      <button type="button" id="enter-site-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl text-base shadow-lg transition active:scale-[0.99] cursor-pointer">
         我已理解說明，進入網站
       </button>
     </div>
   </div>
 
-  <!-- ==================== 1. 頂部常駐學術聲明列 (深藍底 + 橙黃色強調) ==================== -->
+  <!-- ==================== 1. 頂部常駐學術聲明列 (深藍底 + 橙黃色文字凸顯) ==================== -->
   <div class="relative z-[70] bg-slate-900 border-b border-slate-700 text-slate-100 text-xs md:text-sm py-2 px-4 shadow-md flex items-center justify-center gap-2 text-center">
     <span>📋</span>
     <p class="leading-relaxed font-normal tracking-wide">
@@ -55,7 +55,7 @@
   <!-- ==================== 2. 進場行銷促銷彈窗 (z-50) ==================== -->
   <div id="promo-modal" class="fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative text-center border-t-8 border-amber-500">
-      <button type="button" id="close-promo-x" onclick="dismissPromo()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold p-1 cursor-pointer">✕</button>
+      <button type="button" id="close-promo-x" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold p-1 cursor-pointer">✕</button>
       
       <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl font-bold shadow-inner">
         ⚡
@@ -80,7 +80,7 @@
         年度熱銷行動電源限時破盤下殺！<strong class="text-red-600 font-bold">特惠僅限今日 24:00 前下單</strong>，活動結束即恢復原價！
       </p>
       
-      <button type="button" id="close-promo-btn" onclick="dismissPromo()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3.5 rounded-xl shadow-lg transition cursor-pointer">
+      <button type="button" id="close-promo-btn" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3.5 rounded-xl shadow-lg transition cursor-pointer">
         進入賣場立即選購
       </button>
     </div>
@@ -106,4 +106,178 @@
             <img src="philips_1.webp" class="object-contain w-full h-full">
           </button>
           <button type="button" id="thumb-2" class="thumb-btn w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer">
-            <img src="philips_1.webp" class="object-contain w-full h-
+            <img src="philips_1.webp" class="object-contain w-full h-full">
+          </button>
+          <button type="button" id="thumb-3" class="thumb-btn w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer">
+            <img src="philips_1.webp" class="object-contain w-full h-full">
+          </button>
+        </div>
+      </div>
+
+      <!-- 商品資訊區 -->
+      <div class="flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="bg-amber-500 text-white text-xs px-2.5 py-1 rounded font-bold">⚡ 今日快閃限定</span>
+            <span class="bg-red-50 text-red-600 text-xs px-2 py-0.5 rounded font-semibold border border-red-200">限時專案價</span>
+          </div>
+          
+          <h1 class="text-2xl font-bold text-gray-900 mb-3 leading-snug">PHILIPS 飛利浦10000mAh多合一螢幕顯示行動電源(磁吸/自帶雙線/無線/37Wh_具Wh標示)</h1>
+          
+          <ul class="text-sm text-gray-700 space-y-1.5 mb-5 list-disc list-inside">
+            <li>2種自帶線+雙口輸出+磁吸無線充電，可支援五台設備同時充電</li>
+            <li>雙系統適用-通過Qi技術認證及相容MagSafe，iOS & Android雙系統適用，滿足各式手機需求</li>
+            <li>極速充電-提升充電效能25%，同時享有雙向快充功能，22.5W最高輸出</li>
+            <li>隱藏式手機支架，輕鬆追劇不礙事</li>
+          </ul>
+          
+          <!-- 價格區：同時呈現特價與建議售價 -->
+          <div class="bg-amber-50/50 p-4 rounded-xl mb-4 border border-amber-200">
+            <div class="flex items-baseline space-x-3">
+              <span class="text-3xl font-extrabold text-red-600">NT$ 1,399</span>
+              <span class="text-sm text-gray-400 line-through">建議售價 NT$ 1,590</span>
+            </div>
+            <p class="text-xs text-amber-700 mt-1.5 font-bold">⚡ 快閃促銷：今日下單現省 NT$ 191，活動結束即恢復原價</p>
+          </div>
+
+          <div class="border-t border-b py-3 text-sm flex justify-between">
+            <span class="text-gray-500">物流運費</span>
+            <span class="font-bold text-gray-800">標準物流運費 NT$ 90</span>
+          </div>
+        </div>
+
+        <button id="checkout-btn" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3.5 rounded-xl shadow-lg mt-6 transition cursor-pointer">
+          立即搶購並前往結帳 (應付金額 NT$ 1,489)
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==================== 4. 選購確認明細彈窗 ==================== -->
+  <div id="confirm-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative">
+      <h3 class="text-xl font-bold text-gray-900 mb-6">選購確認明細</h3>
+      
+      <div class="space-y-3 text-base">
+        <!-- 1. 商品原價 -->
+        <div class="flex justify-between text-gray-600">
+          <span>商品原價</span>
+          <span class="font-medium text-gray-900">NT$ 1,590</span>
+        </div>
+        <!-- 2. 折扣金額 -->
+        <div class="flex justify-between text-red-600 font-medium">
+          <span>折扣金額</span>
+          <span>- NT$ 191</span>
+        </div>
+        <!-- 3. 物流運費 -->
+        <div class="flex justify-between text-gray-600">
+          <span>物流運費</span>
+          <span class="font-medium text-gray-900">+ NT$ 90</span>
+        </div>
+      </div>
+
+      <!-- 4. 商品總收費 -->
+      <div class="border-t border-gray-100 my-5 pt-4 flex justify-between items-baseline">
+        <span class="text-lg font-bold text-gray-900">商品總收費</span>
+        <span class="text-3xl font-extrabold text-red-600">NT$ 1,489</span>
+      </div>
+
+      <!-- 學術免責提示框 -->
+      <div class="bg-blue-50 border border-blue-100 rounded-xl p-3.5 mb-6 text-xs leading-relaxed text-blue-700">
+        本情境僅供學術研究評估使用，不會產生任何實質金錢扣款或交易行為。請點擊下方按鈕返回問卷繼續作答。
+      </div>
+
+      <!-- 確認按鈕 -->
+      <button id="modal-submit-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl text-base shadow-md transition cursor-pointer">
+        確認選購意向並返回問卷
+      </button>
+    </div>
+  </div>
+
+  <!-- 純粹穩定的事件監聽腳本 -->
+  <script>
+    // 1. 關閉全螢幕前置說明遮罩（最直接穩固的處理）
+    const enterBtn = document.getElementById('enter-site-btn');
+    const overlay = document.getElementById('instruction-overlay');
+    if (enterBtn && overlay) {
+      enterBtn.addEventListener('click', function() {
+        overlay.style.pointerEvents = 'none';
+        overlay.style.display = 'none';
+      });
+    }
+
+    // 2. 關閉行銷快閃彈窗
+    const promoModal = document.getElementById('promo-modal');
+    const closePromoX = document.getElementById('close-promo-x');
+    const closePromoBtn = document.getElementById('close-promo-btn');
+
+    function closePromo() {
+      if (promoModal) {
+        promoModal.style.pointerEvents = 'none';
+        promoModal.style.display = 'none';
+      }
+    }
+    if (closePromoX) closePromoX.addEventListener('click', closePromo);
+    if (closePromoBtn) closePromoBtn.addEventListener('click', closePromo);
+
+    // 3. 圖片切換
+    function switchImage(src, activeId) {
+      const mainImg = document.getElementById('main-product-img');
+      if (mainImg) mainImg.src = src;
+      ['thumb-1', 'thumb-2', 'thumb-3'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.className = 'thumb-btn w-16 h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer ' + (activeId === id ? 'border-amber-500' : 'border-gray-200');
+        }
+      });
+    }
+    const t1 = document.getElementById('thumb-1');
+    const t2 = document.getElementById('thumb-2');
+    const t3 = document.getElementById('thumb-3');
+    if (t1) t1.addEventListener('click', () => switchImage('philips_1.webp', 'thumb-1'));
+    if (t2) t2.addEventListener('click', () => switchImage('philips_2.webp', 'thumb-2'));
+    if (t3) t3.addEventListener('click', () => switchImage('philips_3.webp', 'thumb-3'));
+
+    // 4. 結帳彈窗與跳轉
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const confirmModal = document.getElementById('confirm-modal');
+    if (checkoutBtn && confirmModal) {
+      checkoutBtn.addEventListener('click', function() {
+        confirmModal.classList.remove('hidden');
+      });
+    }
+
+    const modalSubmitBtn = document.getElementById('modal-submit-btn');
+    if (modalSubmitBtn) {
+      modalSubmitBtn.addEventListener('click', function() {
+        window.location.href = "https://www.surveycake.com/s/OOkbX";
+      });
+    }
+
+    // 5. 今日快閃午夜倒數計時（加入存在性驗證，絕不阻斷程式執行）
+    function updateMidnightCountdown() {
+      const elH = document.getElementById('cd-hours');
+      const elM = document.getElementById('cd-minutes');
+      const elS = document.getElementById('cd-seconds');
+      if (!elH || !elM || !elS) return;
+
+      const now = new Date();
+      const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+      let diff = Math.floor((midnight - now) / 1000);
+      if (diff < 0) diff = 24 * 3600 - 1;
+
+      const hrs = Math.floor(diff / 3600);
+      const mins = Math.floor((diff % 3600) / 60);
+      const secs = diff % 60;
+
+      elH.textContent = String(hrs).padStart(2, '0');
+      elM.textContent = String(mins).padStart(2, '0');
+      elS.textContent = String(secs).padStart(2, '0');
+    }
+
+    updateMidnightCountdown();
+    setInterval(updateMidnightCountdown, 1000);
+  </script>
+</body>
+</html>
