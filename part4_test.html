@@ -4,20 +4,12 @@
   <meta charset="UTF-8">
   <title>商品選購評估</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* 進場平滑淡出動畫 */
-    .fade-out {
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s ease-out;
-    }
-  </style>
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col justify-between">
 
   <!-- ==================== 0. 最前置系統指導語遮罩 (最高層級 z-[100]，進站前強制閱讀) ==================== -->
   <div id="instruction-overlay" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-[100] flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 md:p-8 shadow-2xl border border-slate-200 text-center relative animate-in fade-in zoom-in duration-300">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 md:p-8 shadow-2xl border border-slate-200 text-center relative">
       
       <!-- 系統圖示 -->
       <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl shadow-inner border border-blue-100">
@@ -42,18 +34,18 @@
         </p>
         <p class="flex items-start gap-2">
           <span class="text-blue-600 font-bold">3.</span>
-          <span><strong>填答指引：</strong>觀看完網站內容後，請依頁面按鈕指示前往問卷填寫相關評估問題。</span>
+          <span><strong>填答指引：</strong>觀看完網站內容後，請依頁面指示點選按鈕前往問卷填寫相關評估問題。</span>
         </p>
       </div>
 
-      <!-- 確認進入按鈕 -->
-      <button type="button" onclick="enterExperimentSite()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl text-base shadow-lg transition active:scale-[0.99]">
+      <!-- 確認進入按鈕：保證點擊即關閉遮罩 -->
+      <button type="button" onclick="enterExperimentSite()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl text-base shadow-lg transition active:scale-[0.99] cursor-pointer">
         我已理解說明，進入網站
       </button>
     </div>
   </div>
 
-  <!-- ==================== 1. 保留頂部系統提示通告列 (次高層級 z-[70]，進入後常駐) ==================== -->
+  <!-- ==================== 1. 頂部常駐系統提示通告列 (次高層級 z-[70]，進入後常駐不被蓋住) ==================== -->
   <div class="relative z-[70] bg-slate-900 border-b border-slate-700 text-slate-100 text-xs md:text-sm py-2.5 px-4 shadow-md">
     <div class="max-w-5xl mx-auto flex items-center justify-center gap-2">
       <span class="inline-flex items-center justify-center bg-blue-500/20 text-blue-300 text-xs px-2 py-0.5 rounded font-mono font-bold border border-blue-400/30">
@@ -69,7 +61,7 @@
   <!-- ==================== 2. 進場行銷促銷彈窗 (z-50，受試者點擊進入後才展示) ==================== -->
   <div id="promo-modal" class="fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative text-center border-t-8 border-amber-500">
-      <button type="button" onclick="closePromoModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold p-1">✕</button>
+      <button type="button" onclick="closePromoModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold p-1 cursor-pointer">✕</button>
       
       <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl font-bold shadow-inner">
         ⚡
@@ -94,13 +86,11 @@
         年度熱銷行動電源限時破盤下殺！<strong class="text-red-600 font-bold">特惠僅限今日 24:00 前下單</strong>，活動結束即恢復原價！
       </p>
       
-      <button type="button" onclick="closePromoModal()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3.5 rounded-xl shadow-lg transition">
+      <button type="button" onclick="closePromoModal()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3.5 rounded-xl shadow-lg transition cursor-pointer">
         進入賣場立即選購
       </button>
     </div>
   </div>
 
   <!-- 頂部導覽列 -->
-  <header class="bg-white border-b h-14 flex items-center px-4 max-w-5xl mx-auto w-full justify-between">
-    <span class="text-xl font-bold text-blue-600">SMART TECH</span>
-    <span class="text-xs text-gray-400">官方線上旗
+  <header
