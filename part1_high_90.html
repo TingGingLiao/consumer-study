@@ -2,71 +2,80 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
+  <!-- 🌟 關鍵 RWD Viewport 設定：讓手機以 1:1 滿版清晰顯示，不縮放變形 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>商品選購評估</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col justify-between">
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col justify-between antialiased">
 
-  <!-- ==================== 0. 最前置系統指導語遮罩 (z-[100]) ==================== -->
-  <div id="instruction-overlay" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-[100] flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 md:p-8 shadow-2xl border border-slate-200 text-center relative">
-      <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl shadow-inner border border-blue-100">
+  <!-- ==================== 0. 最前置系統指導語遮罩 (RWD 友善版) ==================== -->
+  <div id="instruction-overlay" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-[100] flex items-center justify-center p-3.5 sm:p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-lg w-full p-5 sm:p-8 shadow-2xl border border-slate-200 text-center relative my-auto">
+      
+      <!-- 系統圖示 (響應式大小) -->
+      <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 text-2xl sm:text-3xl shadow-inner border border-blue-100">
         📋
       </div>
-      <div class="inline-block bg-blue-100 text-blue-800 text-sm md:text-base px-4 py-1.5 rounded-full font-bold tracking-wider mb-6">
+
+      <!-- 標籤 -->
+      <div class="inline-block bg-blue-100 text-blue-800 text-xs sm:text-base px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full font-bold tracking-wider mb-4 sm:mb-6">
         情境模擬指引
       </div>
-      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-left text-xs md:text-sm text-gray-700 leading-relaxed mb-6 space-y-3.5">
-        <p class="flex items-start gap-2.5">
-          <span class="text-blue-600 font-bold">1.</span>
+
+      <!-- 說明文案區塊 -->
+      <div class="bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl p-4 sm:p-5 text-left text-xs sm:text-sm text-gray-700 leading-relaxed mb-5 sm:mb-6 space-y-2.5 sm:space-y-3.5">
+        <p class="flex items-start gap-2 sm:gap-2.5">
+          <span class="text-blue-600 font-bold shrink-0">1.</span>
           <span><strong>情境模擬說明：</strong>本網站僅供學術問卷情境測量設計，全程<strong>無任何實質金錢扣款或交易行為</strong>。</span>
         </p>
-        <p class="flex items-start gap-2.5">
-          <span class="text-blue-600 font-bold">2.</span>
+        <p class="flex items-start gap-2 sm:gap-2.5">
+          <span class="text-blue-600 font-bold shrink-0">2.</span>
           <span><strong>瀏覽方式：</strong>請依照您平時的網購習慣，放鬆瀏覽頁面中的商品規格、促銷活動與價格方案即可。</span>
         </p>
-        <p class="flex items-start gap-2.5">
-          <span class="text-blue-600 font-bold">3.</span>
+        <p class="flex items-start gap-2 sm:gap-2.5">
+          <span class="text-blue-600 font-bold shrink-0">3.</span>
           <span><strong>填答指引：</strong>瀏覽完畢後，請依循頁面按鈕指引前往問卷，繼續完成後續評估填答。</span>
         </p>
       </div>
-      <button type="button" id="enter-site-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl text-base shadow-lg transition active:scale-[0.99] cursor-pointer">
+
+      <button type="button" id="enter-site-btn" class="w-full bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white font-bold py-3 sm:py-3.5 rounded-xl text-sm sm:text-base shadow-lg transition cursor-pointer">
         我已理解說明，進入網站
       </button>
     </div>
   </div>
 
-  <!-- ==================== 1. 頂部常駐學術聲明列：高單價深岩黑藍科技色系 (z-[70]) ==================== -->
-  <div class="relative z-[70] bg-slate-900 border-b border-slate-700 text-slate-100 text-xs md:text-sm py-2.5 px-4 shadow-md flex items-center justify-center gap-2 text-center">
-    <span>📋</span>
-    <p class="leading-relaxed font-normal tracking-wide">
+  <!-- ==================== 1. 頂部常駐學術聲明列：深岩黑藍科技色系 (RWD 友善換行) ==================== -->
+  <div class="relative z-[70] bg-slate-900 border-b border-slate-700 text-slate-100 text-xs sm:text-sm py-2 px-3 sm:px-4 shadow-md flex items-center justify-center gap-1.5 sm:gap-2 text-center leading-normal">
+    <span class="shrink-0">📋</span>
+    <p class="font-normal tracking-wide">
       <span class="text-amber-400 font-bold">【學術研究聲明】</span>本情境僅供學術問卷評估使用，全程不會產生任何實質金錢扣款或交易行為。
     </p>
   </div>
 
   <!-- 頁首導覽列 -->
-  <header class="bg-white border-b h-14 flex items-center px-4 max-w-5xl mx-auto w-full justify-between">
-    <span class="text-xl font-bold text-gray-900 tracking-wider">SMART TECH</span>
+  <header class="bg-white border-b h-13 sm:h-14 flex items-center px-4 max-w-5xl mx-auto w-full justify-between">
+    <span class="text-lg sm:text-xl font-bold text-gray-900 tracking-wider">SMART TECH</span>
     <span class="text-xs text-gray-400">官方線上旗艦館</span>
   </header>
 
-  <!-- ==================== 2. 商品主內容區 ==================== -->
-  <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 grid md:grid-cols-2 gap-8 items-start">
+  <!-- ==================== 2. 商品主內容區 (手機單欄，平板/桌機雙欄) ==================== -->
+  <main class="max-w-5xl mx-auto px-3.5 sm:px-4 py-4 sm:py-8 flex-grow w-full">
+    <div class="bg-white rounded-xl sm:rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-8 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-start">
       
-      <!-- 圖片展示區 (3張切換) -->
+      <!-- 圖片展示區 -->
       <div>
-        <div class="aspect-square bg-white rounded-xl overflow-hidden mb-3 border flex items-center justify-center p-4">
+        <div class="aspect-square bg-white rounded-xl overflow-hidden mb-3 border flex items-center justify-center p-3 sm:p-4">
           <img id="main-product-img" src="apple watch.webp" class="object-contain w-full h-full transition duration-200">
         </div>
-        <div class="flex gap-3">
-          <button type="button" id="thumb-1" class="thumb-btn w-16 h-16 rounded-lg overflow-hidden border-2 border-slate-800 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer">
+        <div class="flex gap-2.5 sm:gap-3">
+          <button type="button" id="thumb-1" class="thumb-btn w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden border-2 border-slate-800 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer">
             <img src="apple watch.webp" class="object-contain w-full h-full">
           </button>
-          <button type="button" id="thumb-2" class="thumb-btn w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer">
+          <button type="button" id="thumb-2" class="thumb-btn w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer">
             <img src="apple watch 2.webp" class="object-contain w-full h-full">
           </button>
-          <button type="button" id="thumb-3" class="thumb-btn w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer">
+          <button type="button" id="thumb-3" class="thumb-btn w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden border-2 border-gray-200 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer">
             <img src="apple watch 3.webp" class="object-contain w-full h-full">
           </button>
         </div>
@@ -75,34 +84,35 @@
       <!-- 商品資訊區 -->
       <div class="flex flex-col justify-between">
         <div>
-          <div class="flex items-center gap-2 mb-2">
-            <span class="bg-gray-100 text-gray-800 text-xs px-2.5 py-1 rounded font-semibold">旗艦新品</span>
-            <span class="bg-red-50 text-red-600 text-xs px-2.5 py-1 rounded font-bold border border-red-200">限時現折 NT$ 1000</span>
+          <div class="flex items-center gap-1.5 sm:gap-2 mb-2">
+            <span class="bg-gray-100 text-gray-800 text-[11px] sm:text-xs px-2 sm:px-2.5 py-0.5 sm:py-1 rounded font-semibold">旗艦新品</span>
+            <span class="bg-red-50 text-red-600 text-[11px] sm:text-xs px-2 sm:px-2.5 py-0.5 sm:py-1 rounded font-bold border border-red-200">限時現折 NT$ 1000</span>
           </div>
 
-          <h1 class="text-2xl font-bold text-gray-900 mb-3 leading-snug">Apple Watch Series 11 GPS 42mm 曜石黑色鋁金屬 錶殼搭配黑色運動錶帶</h1>
-          <ul class="text-sm text-gray-700 space-y-1.5 mb-5 list-disc list-inside">
+          <h1 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3 leading-snug">Apple Watch Series 11 GPS 42mm 曜石黑色鋁金屬 錶殼搭配黑色運動錶帶</h1>
+          
+          <ul class="text-xs sm:text-sm text-gray-700 space-y-1 sm:space-y-1.5 mb-4 sm:mb-5 list-disc list-inside">
             <li>隨顯 Retina 顯示器，具備廣視角 OLED 與 LTPO3</li>
             <li>全新的睡眠分數，追蹤並改善你的睡眠品質</li>
             <li>S10 晶片配備 64 位元雙核心處理器</li>
             <li>電池使用時間正常使用最長可達 24 小時</li>
           </ul>
           
-          <div class="bg-gray-50 p-4 rounded-xl mb-4 border">
-            <div class="flex items-baseline space-x-3">
-              <span class="text-3xl font-extrabold text-red-600">NT$ 11,900</span>
-              <span class="text-sm text-gray-400 line-through">原價 NT$ 12,900</span>
+          <div class="bg-gray-50 p-3.5 sm:p-4 rounded-xl mb-4 border">
+            <div class="flex items-baseline space-x-2 sm:space-x-3">
+              <span class="text-2xl sm:text-3xl font-extrabold text-red-600">NT$ 11,900</span>
+              <span class="text-xs sm:text-sm text-gray-400 line-through">原價 NT$ 12,900</span>
             </div>
-            <p class="text-xs text-red-600 mt-1.5 font-bold">🎉 本檔優惠：結帳即享現折 NT$ 1000 折抵</p>
+            <p class="text-[11px] sm:text-xs text-red-600 mt-1 sm:mt-1.5 font-bold">🎉 本檔優惠：結帳即享現折 NT$ 1000 折抵</p>
           </div>
 
-          <div class="border-t border-b py-3 text-sm flex justify-between">
+          <div class="border-t border-b py-2.5 sm:py-3 text-xs sm:text-sm flex justify-between">
             <span class="text-gray-500">物流運費</span>
             <span class="font-bold text-gray-800">標準物流運費 NT$ 90</span>
           </div>
         </div>
 
-        <button id="checkout-btn" class="w-full bg-gray-900 hover:bg-black text-white font-bold py-3.5 rounded-xl shadow-lg mt-6 transition cursor-pointer">
+        <button id="checkout-btn" class="w-full bg-gray-900 hover:bg-black active:scale-[0.99] text-white font-bold py-3 sm:py-3.5 rounded-xl shadow-lg mt-5 sm:mt-6 transition cursor-pointer text-sm sm:text-base">
           下一頁
         </button>
       </div>
@@ -110,12 +120,12 @@
     </div>
   </main>
 
-  <!-- ==================== 3. 選購確認明細彈窗 ==================== -->
-  <div id="confirm-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl relative">
-      <h3 class="text-xl font-bold text-gray-900 mb-6">費用明細</h3>
+  <!-- ==================== 3. 選購確認明細彈窗 (RWD 友善版) ==================== -->
+  <div id="confirm-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-3.5 sm:p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-md w-full p-5 sm:p-8 shadow-2xl relative my-auto">
+      <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">費用明細</h3>
       
-      <div class="space-y-3 text-base">
+      <div class="space-y-2.5 sm:space-y-3 text-sm sm:text-base">
         <div class="flex justify-between text-gray-600">
           <span>商品原價</span>
           <span class="font-medium text-gray-900">NT$ 12,900</span>
@@ -130,16 +140,16 @@
         </div>
       </div>
 
-      <div class="border-t border-gray-100 my-5 pt-4 flex justify-between items-baseline">
-        <span class="text-lg font-bold text-gray-900">商品總收費</span>
-        <span class="text-3xl font-extrabold text-red-600">NT$ 11,990</span>
+      <div class="border-t border-gray-100 my-4 sm:my-5 pt-3 sm:pt-4 flex justify-between items-baseline">
+        <span class="text-base sm:text-lg font-bold text-gray-900">商品總收費</span>
+        <span class="text-2xl sm:text-3xl font-extrabold text-red-600">NT$ 11,990</span>
       </div>
 
-      <div class="bg-blue-50 border border-blue-100 rounded-xl p-3.5 mb-6 text-xs leading-relaxed text-blue-700">
+      <div class="bg-blue-50 border border-blue-100 rounded-xl p-3 sm:p-3.5 mb-5 sm:mb-6 text-[11px] sm:text-xs leading-relaxed text-blue-700">
         本情境僅供學術研究評估使用，不會產生任何實質金錢扣款或交易行為。請點擊下方按鈕返回問卷繼續作答。
       </div>
 
-      <button id="modal-submit-btn" class="w-full bg-slate-900 hover:bg-black text-white font-bold py-3.5 rounded-xl text-base shadow-md transition cursor-pointer">
+      <button id="modal-submit-btn" class="w-full bg-slate-900 hover:bg-black active:scale-[0.99] text-white font-bold py-3 sm:py-3.5 rounded-xl text-sm sm:text-base shadow-md transition cursor-pointer">
         下一頁(前往問卷)
       </button>
     </div>
@@ -161,7 +171,7 @@
       ['thumb-1', 'thumb-2', 'thumb-3'].forEach(id => {
         const el = document.getElementById(id);
         if (el) {
-          el.className = 'thumb-btn w-16 h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer ' + (activeId === id ? 'border-slate-800' : 'border-gray-200');
+          el.className = 'thumb-btn w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden border-2 hover:opacity-90 focus:outline-none transition shrink-0 p-1 flex items-center justify-center bg-white cursor-pointer ' + (activeId === id ? 'border-slate-800' : 'border-gray-200');
         }
       });
     }
