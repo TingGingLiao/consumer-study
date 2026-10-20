@@ -2,8 +2,7 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <!-- 🌟 必備 RWD Viewport：確保手機端 1:1 滿版顯示 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>問卷載入中...</title>
   <style>
     body {
@@ -16,11 +15,6 @@
       margin: 0;
       background-color: #f8fafc;
       color: #334155;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    .loading-box {
-      text-align: center;
     }
     .spinner {
       width: 36px;
@@ -29,79 +23,22 @@
       border-top: 4px solid #3b82f6;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
-      margin: 0 auto 16px;
+      margin-bottom: 16px;
     }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-    /* 針對 X / 社群內建瀏覽器的防呆提示框 */
-    #inapp-warning {
-      display: none;
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-top: 6px solid #ef4444;
-      border-radius: 16px;
-      padding: 24px;
-      max-width: 420px;
-      width: 100%;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-      text-align: center;
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
-    .warning-icon { font-size: 36px; margin-bottom: 8px; }
-    .warning-title { font-size: 18px; font-weight: bold; color: #1e293b; margin-bottom: 12px; }
-    .warning-text { font-size: 14px; color: #475569; line-height: 1.6; text-align: left; background: #fef2f2; padding: 12px 16px; border-radius: 10px; margin-bottom: 16px; border: 1px solid #fee2e2; }
-    .step-list { margin: 0; padding-left: 20px; }
-    .step-list li { margin-bottom: 6px; }
   </style>
-</head>
-<body>
-
-  <!-- 1. 一般外部瀏覽器顯示的正常載入畫面 -->
-  <div id="loading-view" class="loading-box">
-    <div class="spinner"></div>
-    <p>正在為您載入問卷情境，請稍候...</p>
-  </div>
-
-  <!-- 2. 當偵測到受試者在 X / 內建瀏覽器時彈出的防呆提示 -->
-  <div id="inapp-warning">
-    <div class="warning-icon">⚠️</div>
-    <div class="warning-title">煩請使用外部瀏覽器開啟</div>
-    <div class="warning-text">
-      為了避免社群軟體（X / Twitter / LINE）內建瀏覽器限制，而導致最後<strong>無法正常送出問卷</strong>。請依下列步驟切換：
-      <ol class="step-list" style="margin-top: 8px;">
-        <li>點擊螢幕右上角（或右下角）的 <strong>「⋯」</strong> 或 <strong>「分享」</strong> 圖示</li>
-        <li>選擇 <strong>「在 Safari 中開啟」</strong> 或 <strong>「在 Chrome 中開啟」</strong></li>
-      </ol>
-    </div>
-    <p style="font-size: 12px; color: #94a3b8; margin: 0;">切換後即可順暢填答並正常送出問卷，非常感謝您的協助！</p>
-  </div>
-
   <script>
     (function() {
-      const ua = navigator.userAgent || navigator.vendor || window.opera;
-
-      // 偵測是否為社群 App 內建瀏覽器 (X / Twitter, LINE, Instagram, Facebook)
-      const isInApp = (
-        ua.indexOf("Twitter") > -1 || 
-        ua.indexOf("Line") > -1 || 
-        ua.indexOf("Instagram") > -1 || 
-        ua.indexOf("FBAN") > -1 || 
-        ua.indexOf("FBAV") > -1
-      );
-
-      // 若在 X / 內建瀏覽器中開啟，立刻阻擋跳轉並顯示引導說明
-      if (isInApp) {
-        document.getElementById('loading-view').style.display = 'none';
-        document.getElementById('inapp-warning').style.display = 'block';
-        return; // 終止自動跳轉，保護受試者作答資料
-      }
-
       // 4 個實驗情境網站網址
       const site1 = "https://tinggingliao.github.io/consumer-study/part1_high_90.html";
       const site2 = "https://tinggingliao.github.io/consumer-study/part1_high_45.html";
       const site3 = "https://tinggingliao.github.io/consumer-study/part1_low_90.html";
       const site4 = "https://tinggingliao.github.io/consumer-study/part1_low_45.html"; // 對應 4kmwB 問卷
 
-      // 🌟 加權分派池：site4 改為出現 4 次（被抽中機率約 57.1%）
+      // 🌟 加權分派池：site4 出現 4 次，其餘各 1 次（被抽中機率約 57.1%）
       const weightedSurveys = [
         site1,
         site2,
@@ -109,14 +46,18 @@
         site4, site4, site4, site4
       ];
 
-      // 隨機抽取目標網址並跳轉
+      // 隨機抽取目標網址並直接跳轉
       const randomIndex = Math.floor(Math.random() * weightedSurveys.length);
       const targetUrl = weightedSurveys[randomIndex];
 
       if (targetUrl) {
-        window.location.href = targetUrl;
+        window.location.replace(targetUrl);
       }
     })();
   </script>
+</head>
+<body>
+  <div class="spinner"></div>
+  <p>正在為您載入問卷情境，請稍候...</p>
 </body>
 </html>
