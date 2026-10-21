@@ -32,23 +32,17 @@
   </style>
   <script>
     (function() {
-      // 4 個實驗情境網站網址
-      const site1 = "https://tinggingliao.github.io/consumer-study/part1_high_90.html";
-      const site2 = "https://tinggingliao.github.io/consumer-study/part1_high_45.html";
-      const site3 = "https://tinggingliao.github.io/consumer-study/part1_low_90.html";
-      const site4 = "https://tinggingliao.github.io/consumer-study/part1_low_45.html"; // 對應 4kmwB 問卷
-
-      // 🌟 加權分派池：site4 出現 4 次，其餘各 1 次（被抽中機率約 57.1%）
-      const weightedSurveys = [
-        site1,
-        site2,
-        site3,
-        site4, site4, site4, site4
+      // 4 個實驗情境網站網址（完全均等分派，各 25% 機率）
+      const surveys = [
+        "https://tinggingliao.github.io/consumer-study/part1_high_90.html",
+        "https://tinggingliao.github.io/consumer-study/part1_high_45.html",
+        "https://tinggingliao.github.io/consumer-study/part1_low_90.html",
+        "https://tinggingliao.github.io/consumer-study/part1_low_45.html"
       ];
 
       // 隨機抽取目標網址並直接跳轉
-      const randomIndex = Math.floor(Math.random() * weightedSurveys.length);
-      const targetUrl = weightedSurveys[randomIndex];
+      const randomIndex = Math.floor(Math.random() * surveys.length);
+      const targetUrl = surveys[randomIndex];
 
       if (targetUrl) {
         window.location.replace(targetUrl);
