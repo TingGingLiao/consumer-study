@@ -32,17 +32,25 @@
   </style>
   <script>
     (function() {
-      // 4 個實驗情境網站網址（完全均等分派，各 25% 機率）
-      const surveys = [
-        "https://tinggingliao.github.io/consumer-study/part1_high_90.html",
-        "https://tinggingliao.github.io/consumer-study/part1_high_45.html",
-        "https://tinggingliao.github.io/consumer-study/part1_low_90.html",
-        "https://tinggingliao.github.io/consumer-study/part1_low_45.html"
+      // 4 個實驗情境網站網址
+      const high_45 = "https://tinggingliao.github.io/consumer-study/part1_high_45.html"; // 24 份 (需補 6 份)
+      const high_90 = "https://tinggingliao.github.io/consumer-study/part1_high_90.html"; // 32 份 (已滿額暫停，0%)
+      const low_45  = "https://tinggingliao.github.io/consumer-study/part1_low_45.html";  // 24 份 (需補 6 份)
+      const low_90  = "https://tinggingliao.github.io/consumer-study/part1_low_90.html";  // 29 份 (需補 1 份)
+
+      // 🎯 精準補齊池：
+      // high_45: 4 次 (~44.4%)
+      // low_45:  4 次 (~44.4%)
+      // low_90:  1 次 (~11.1%)
+      const targetPool = [
+        high_45, high_45, high_45, high_45,
+        low_45, low_45, low_45, low_45,
+        low_90
       ];
 
       // 隨機抽取目標網址並直接跳轉
-      const randomIndex = Math.floor(Math.random() * surveys.length);
-      const targetUrl = surveys[randomIndex];
+      const randomIndex = Math.floor(Math.random() * targetPool.length);
+      const targetUrl = targetPool[randomIndex];
 
       if (targetUrl) {
         window.location.replace(targetUrl);
