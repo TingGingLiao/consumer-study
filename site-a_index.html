@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>問卷載入中...</title>
+  <title>點擊前往情境模擬問卷網頁</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -32,15 +32,14 @@
   </style>
   <script>
     (function() {
-      // 4 個實驗情境網站網址（各 25% 均等分派）
-      const surveys = [
-        "https://tinggingliao.github.io/consumer-study/part1_high_90.html",
-        "https://tinggingliao.github.io/consumer-study/part1_high_45.html",
-        "https://tinggingliao.github.io/consumer-study/part1_low_90.html",
-        "https://tinggingliao.github.io/consumer-study/part1_low_45.html"
-      ];
+      // 僅保留要重新發放的 3 個實驗組別（完全排除 high_90）
+      const high_45 = "https://tinggingliao.github.io/consumer-study/part1_high_45.html"; // 高單價低運費
+      const low_45  = "https://tinggingliao.github.io/consumer-study/part1_low_45.html";  // 低單價低運費
+      const low_90  = "https://tinggingliao.github.io/consumer-study/part1_low_90.html";  // 低單價高運費
 
-      // 隨機抽取目標網址並跳轉
+      // 三等分均等分配池 (各約 33.3%)
+      const surveys = [high_45, low_45, low_90];
+
       const randomIndex = Math.floor(Math.random() * surveys.length);
       const targetUrl = surveys[randomIndex];
 
