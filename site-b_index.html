@@ -5,34 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>問卷載入中...</title>
   <style>
-    body { font-family: sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background-color: #f8fafc; color: #334155; }
-    .spinner { width: 36px; height: 36px; border: 4px solid #e2e8f0; border-top: 4px solid #3b82f6; border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 16px; }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8fafc;
+      color: #334155;
+    }
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 4px solid #e2e8f0;
+      border-top: 4px solid #3b82f6;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 16px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
   <script>
     (function() {
-      // 替換為類別 B 的 4 份問卷網址
-      const surveys = [
-        "https://tinggingliao.github.io/consumer-study/part2_salient_90.html",
-        "https://tinggingliao.github.io/consumer-study/part2_salient_45.html",
-        "https://tinggingliao.github.io/consumer-study/part2_obscure_90.html",
-        "https://tinggingliao.github.io/consumer-study/part2_obscure_45.html"
+      // 🌟 四組實驗情境網址定義
+      // 1. 暗示性低運費 (已確認為 26 份，僅差 4 份)
+      const obscure_45 = "https://tinggingliao.github.io/consumer-study/part2_obscure_45.html";
+
+      // 2. 其餘三組（請確認 10 份、13 份、14 份對應的實際網址）：
+      const group_10 = "https://tinggingliao.github.io/consumer-study/part2_salient_45.html"; // 10 份 (最缺)
+      const group_13 = "https://tinggingliao.github.io/consumer-study/part2_salient_90.html"; // 13 份
+      const group_14 = "https://tinggingliao.github.io/consumer-study/part2_obscure_90.html"; // 14 份
+
+      // 🎯 動態加權分派池（總權重 11）：
+      // 10 份組 -> 4 次 (36.4%)
+      // 13 份組 -> 3 次 (27.3%)
+      // 14 份組 -> 3 次 (27.3%)
+      // 26 份組 (暗示性低運費) -> 僅 1 次 (9.1%)
+      const weightedSurveys = [
+        group_10, group_10, group_10, group_10,
+        group_13, group_13, group_13,
+        group_14, group_14, group_14,
+        obscure_45
       ];
 
-      const STORAGE_KEY = "assigned_survey_site_B";
-      let targetUrl = null;
-
-      try {
-        targetUrl = localStorage.getItem(STORAGE_KEY);
-        if (!targetUrl || !surveys.includes(targetUrl)) {
-          const randomIndex = Math.floor(Math.random() * surveys.length);
-          targetUrl = surveys[randomIndex];
-          localStorage.setItem(STORAGE_KEY, targetUrl);
-        }
-      } catch (e) {
-        const randomIndex = Math.floor(Math.random() * surveys.length);
-        targetUrl = surveys[randomIndex];
-      }
+      // 隨機抽取目標網址並直接跳轉
+      const randomIndex = Math.floor(Math.random() * weightedSurveys.length);
+      const targetUrl = weightedSurveys[randomIndex];
 
       if (targetUrl) {
         window.location.replace(targetUrl);
@@ -42,6 +65,6 @@
 </head>
 <body>
   <div class="spinner"></div>
-  <p>正在為您載入問卷，請稍候...</p>
+  <p>正在為您載入問卷情境，請稍候...</p>
 </body>
 </html>
