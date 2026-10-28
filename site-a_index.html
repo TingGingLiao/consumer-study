@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>情境模擬網頁載入中...</title>
+  <title>問卷載入中...</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -32,24 +32,8 @@
   </style>
   <script>
     (function() {
-      // 實驗情境網站網址
-      const low_90  = "https://tinggingliao.github.io/consumer-study/part1_low_90.html";  // 高運費低單價 (缺 4 份)
-      const high_45 = "https://tinggingliao.github.io/consumer-study/part1_high_45.html"; // 低運費高單價 (缺 2 份)
-      const low_45  = "https://tinggingliao.github.io/consumer-study/part1_low_45.html";  // 低單價低運費 (額外多收)
-
-      // 🎯 分派權重池 (總權重 5)：
-      // low_90  出現 2 次 (40%)
-      // low_45  出現 2 次 (40%)
-      // high_45 出現 1 次 (20%)
-      const targetPool = [
-        low_90, low_90, low_90,
-        low_45, 
-        high_45
-      ];
-
-      // 隨機抽取目標網址並直接跳轉
-      const randomIndex = Math.floor(Math.random() * targetPool.length);
-      const targetUrl = targetPool[randomIndex];
+      // 僅鎖定「低單價高運費」頁面（100% 導流）
+      const targetUrl = "https://tinggingliao.github.io/consumer-study/part1_low_90.html";[cite: 1]
 
       if (targetUrl) {
         window.location.replace(targetUrl);
