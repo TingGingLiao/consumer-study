@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>點擊前往情境模擬問卷網頁</title>
+  <title>情境模擬網頁載入中...</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -32,16 +32,24 @@
   </style>
   <script>
     (function() {
-      // 僅保留要重新發放的 3 個實驗組別（完全排除 high_90）
-      const high_45 = "https://tinggingliao.github.io/consumer-study/part1_high_45.html"; // 高單價低運費
-      const low_45  = "https://tinggingliao.github.io/consumer-study/part1_low_45.html";  // 低單價低運費
-      const low_90  = "https://tinggingliao.github.io/consumer-study/part1_low_90.html";  // 低單價高運費
+      // 實驗情境網站網址
+      const low_90  = "https://tinggingliao.github.io/consumer-study/part1_low_90.html";  // 高運費低單價 (缺 4 份)
+      const high_45 = "https://tinggingliao.github.io/consumer-study/part1_high_45.html"; // 低運費高單價 (缺 2 份)
+      const low_45  = "https://tinggingliao.github.io/consumer-study/part1_low_45.html";  // 低單價低運費 (額外多收)
 
-      // 三等分均等分配池 (各約 33.3%)
-      const surveys = [high_45, low_45, low_90];
+      // 🎯 分派權重池 (總權重 5)：
+      // low_90  出現 2 次 (40%)
+      // low_45  出現 2 次 (40%)
+      // high_45 出現 1 次 (20%)
+      const targetPool = [
+        low_90, low_90,
+        low_45, low_45,
+        high_45
+      ];
 
-      const randomIndex = Math.floor(Math.random() * surveys.length);
-      const targetUrl = surveys[randomIndex];
+      // 隨機抽取目標網址並直接跳轉
+      const randomIndex = Math.floor(Math.random() * targetPool.length);
+      const targetUrl = targetPool[randomIndex];
 
       if (targetUrl) {
         window.location.replace(targetUrl);
