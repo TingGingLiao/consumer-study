@@ -3,45 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>情境模擬載入中...</title>
+  <title>問卷載入中...</title>
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      background-color: #f8fafc;
-      color: #334155;
-    }
-    .spinner {
-      width: 36px;
-      height: 36px;
-      border: 4px solid #e2e8f0;
-      border-top: 4px solid #3b82f6;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin-bottom: 16px;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+    body { font-family: sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background-color: #f8fafc; color: #334155; }
+    .spinner { width: 36px; height: 36px; border: 4px solid #e2e8f0; border-top: 4px solid #3b82f6; border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 16px; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
   </style>
   <script>
     (function() {
-      // 🎯 100% 全力補齊最後 1 份：明示性折扣搭配低運費
-      const targetUrl = "https://tinggingliao.github.io/consumer-study/part2_salient_45.html";
+      // 🌟 Part 2 的 4 個實驗情境網址與對應權重（目前預設四組均等各 25%）
+      const weightedSurveys = [
+        { url: "https://tinggingliao.github.io/consumer-study/part2_salient_90.html", weight: 25 }, // 明示折扣 + 90元
+        { url: "https://tinggingliao.github.io/consumer-study/part2_salient_45.html", weight: 25 }, // 明示折扣 + 45元
+        { url: "https://tinggingliao.github.io/consumer-study/part2_obscure_90.html", weight: 25 }, // 暗示折扣 + 90元
+        { url: "https://tinggingliao.github.io/consumer-study/part2_obscure_45.html", weight: 25 }  // 暗示折扣 + 45元
+      ];
 
-      // 直接跳轉
-      window.location.replace(targetUrl);
+      // 依權重隨機抽取網址的函式
+      function getWeightedRandomUrl() {
+        const totalWeight = weightedSurveys.reduce((sum, item) => sum + item.weight, 0);
+        let randomNum = Math.random() * totalWeight;
+        
+        for (let i = 0; i < weightedSurveys.length; i++) {
+          if (randomNum < weightedSurveys[i].weight) {
+            return weightedSurveys[i].url;
+          }
+          randomNum -= weightedSurveys[i].weight;
+        }
+        return weightedSurveys[0].url;
+      }
+
+      const validUrls = weightedSurveys.map(item => item.url);
+      const STORAGE_KEY = "assigned_survey_site_B"; // 🌟 專屬 Part 2 的識別 Key
+      let targetUrl = null;
+
+      try {
+        targetUrl = localStorage.getItem(STORAGE_KEY);
+        if (!targetUrl || !validUrls.includes(targetUrl)) {
+          targetUrl = getWeightedRandomUrl();
+          localStorage.setItem(STORAGE_KEY, targetUrl);
+        }
+      } catch (e) {
+        targetUrl = getWeightedRandomUrl();
+      }
+
+      if (targetUrl) {
+        window.location.replace(targetUrl);
+      }
     })();
   </script>
 </head>
 <body>
   <div class="spinner"></div>
-  <p>正在為您載入問卷情境，請稍候...</p>
+  <p>正在為您載入問卷，請稍候...</p>
 </body>
 </html>
