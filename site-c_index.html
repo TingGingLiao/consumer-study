@@ -11,27 +11,40 @@
   </style>
   <script>
     (function() {
-      // 替換為類別 C 的 4 份問卷網址
-      const surveys = [
-        "https://tinggingliao.github.io/consumer-study/part3_flash_today_90.html",
-        "https://tinggingliao.github.io/consumer-study/part3_flash_today_45.html",
-        "https://tinggingliao.github.io/consumer-study/part3_upcoming_preview_90.html",
-        "https://tinggingliao.github.io/consumer-study/part3_upcoming_preview_45.html"
+      // 設定各組網址與對應權重（總和 = 100）
+      const weightedSurveys = [
+        { url: "https://tinggingliao.github.io/consumer-study/part3_upcoming_preview_90.html", weight: 33 }, // 預告高運費 (目前15份 -> 33%)
+        { url: "https://tinggingliao.github.io/consumer-study/part3_upcoming_preview_45.html", weight: 25 }, // 預告低運費 (目前19份 -> 25%)
+        { url: "https://tinggingliao.github.io/consumer-study/part3_flash_today_90.html",      weight: 25 }, // 限時高運費 (目前19份 -> 25%)
+        { url: "https://tinggingliao.github.io/consumer-study/part3_flash_today_45.html",      weight: 17 }  // 限時低運費 (目前24份 -> 17%)
       ];
 
+      // 依權重隨機抽取網址的函式
+      function getWeightedRandomUrl() {
+        const totalWeight = weightedSurveys.reduce((sum, item) => sum + item.weight, 0);
+        let randomNum = Math.random() * totalWeight;
+        
+        for (let i = 0; i < weightedSurveys.length; i++) {
+          if (randomNum < weightedSurveys[i].weight) {
+            return weightedSurveys[i].url;
+          }
+          randomNum -= weightedSurveys[i].weight;
+        }
+        return weightedSurveys[0].url;
+      }
+
+      const validUrls = weightedSurveys.map(item => item.url);
       const STORAGE_KEY = "assigned_survey_site_C";
       let targetUrl = null;
 
       try {
         targetUrl = localStorage.getItem(STORAGE_KEY);
-        if (!targetUrl || !surveys.includes(targetUrl)) {
-          const randomIndex = Math.floor(Math.random() * surveys.length);
-          targetUrl = surveys[randomIndex];
+        if (!targetUrl || !validUrls.includes(targetUrl)) {
+          targetUrl = getWeightedRandomUrl();
           localStorage.setItem(STORAGE_KEY, targetUrl);
         }
       } catch (e) {
-        const randomIndex = Math.floor(Math.random() * surveys.length);
-        targetUrl = surveys[randomIndex];
+        targetUrl = getWeightedRandomUrl();
       }
 
       if (targetUrl) {
