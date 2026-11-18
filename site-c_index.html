@@ -11,12 +11,12 @@
   </style>
   <script>
     (function() {
-      // 設定各組網址與對應權重（總和 = 100）
+      // 🌟 Part 3 的 4 個實驗情境網址與對應權重（調回各 25% 均等分派）
       const weightedSurveys = [
-        { url: "https://tinggingliao.github.io/consumer-study/part3_upcoming_preview_90.html", weight: 33 }, // 預告高運費 (目前15份 -> 33%)
-        { url: "https://tinggingliao.github.io/consumer-study/part3_upcoming_preview_45.html", weight: 25 }, // 預告低運費 (目前19份 -> 25%)
-        { url: "https://tinggingliao.github.io/consumer-study/part3_flash_today_90.html",      weight: 25 }, // 限時高運費 (目前19份 -> 25%)
-        { url: "https://tinggingliao.github.io/consumer-study/part3_flash_today_45.html",      weight: 17 }  // 限時低運費 (目前24份 -> 17%)
+        { url: "https://tinggingliao.github.io/consumer-study/part3_upcoming_preview_90.html", weight: 25 }, // 預告高運費
+        { url: "https://tinggingliao.github.io/consumer-study/part3_upcoming_preview_45.html", weight: 25 }, // 預告低運費
+        { url: "https://tinggingliao.github.io/consumer-study/part3_flash_today_90.html",      weight: 25 }, // 限時高運費
+        { url: "https://tinggingliao.github.io/consumer-study/part3_flash_today_45.html",      weight: 25 }  // 限時低運費
       ];
 
       // 依權重隨機抽取網址的函式
