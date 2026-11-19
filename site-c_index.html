@@ -11,19 +11,22 @@
   </style>
   <script>
     (function() {
-      // 🌟 Part 3 的 4 個實驗情境網址與對應權重（調回各 25% 均等分派）
+      // 🌟 集中加強高運費組（90元），低運費組（45元）已達標先設為 0
       const weightedSurveys = [
-        { url: "https://tinggingliao.github.io/consumer-study/part3_upcoming_preview_90.html", weight: 25 }, // 預告高運費
-        { url: "https://tinggingliao.github.io/consumer-study/part3_upcoming_preview_45.html", weight: 25 }, // 預告低運費
-        { url: "https://tinggingliao.github.io/consumer-study/part3_flash_today_90.html",      weight: 25 }, // 限時高運費
-        { url: "https://tinggingliao.github.io/consumer-study/part3_flash_today_45.html",      weight: 25 }  // 限時低運費
+        { url: "https://tinggingliao.github.io/consumer-study/part3_upcoming_preview_90.html", weight: 50 }, // 預告高運費 (加強補齊)
+        { url: "https://tinggingliao.github.io/consumer-study/part3_flash_today_90.html",      weight: 50 }, // 限時高運費 (加強補齊)
+        { url: "https://tinggingliao.github.io/consumer-study/part3_upcoming_preview_45.html", weight: 0  }, // 預告低運費 (已達 30 份)
+        { url: "https://tinggingliao.github.io/consumer-study/part3_flash_today_45.html",      weight: 0  }  // 限時低運費 (已達 30 份)
       ];
 
       // 依權重隨機抽取網址的函式
       function getWeightedRandomUrl() {
         const totalWeight = weightedSurveys.reduce((sum, item) => sum + item.weight, 0);
+        if (totalWeight <= 0) {
+          return weightedSurveys[0].url;
+        }
         let randomNum = Math.random() * totalWeight;
-        
+
         for (let i = 0; i < weightedSurveys.length; i++) {
           if (randomNum < weightedSurveys[i].weight) {
             return weightedSurveys[i].url;
